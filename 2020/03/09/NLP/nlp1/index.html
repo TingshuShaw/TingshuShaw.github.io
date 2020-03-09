@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>基于维基百科中文语料库的Word2Vec模型训练 | Shaw</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="NLP(自然语言处理)" />
+  
+  
+  
+  
+  <meta name="description" content="说明：该博客代码参考于参考博客：使用中文维基百科语料库+opencc+jieba+gensim训练一个word2vec模型参考博客：使用中文维基百科训练word2vec模型 零、 模型训练环境 Windows10-X64  、 python2.7 、 python3.6  pip install jieba  pip install gensim">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于维基百科中文语料库的Word2Vec模型训练">
+<meta property="og:url" content="http://yoursite.com/2020/03/09/NLP/nlp1/index.html">
+<meta property="og:site_name" content="Shaw">
+<meta property="og:description" content="说明：该博客代码参考于参考博客：使用中文维基百科语料库+opencc+jieba+gensim训练一个word2vec模型参考博客：使用中文维基百科训练word2vec模型 零、 模型训练环境 Windows10-X64  、 python2.7 、 python3.6  pip install jieba  pip install gensim">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191205090005896.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191205090904895.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNTk1NTA3,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191205091307665.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191205092120843.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191205092630110.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNTk1NTA3,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191205093005400.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNTk1NTA3,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191205093332974.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNTk1NTA3,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191205100149228.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191205105946298.png">
+<meta property="article:published_time" content="2020-03-09T07:42:53.479Z">
+<meta property="article:modified_time" content="2020-03-09T08:04:01.803Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="NLP(自然语言处理)">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20191205090005896.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Shaw" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="http://img5.imgtn.bdimg.com/it/u=2149743740,278630499&fm=26&gp=0.jpg">
+              </a>
+            
+          </h1>
+          
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-NLP/nlp1" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      基于维基百科中文语料库的Word2Vec模型训练
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2020/03/09/NLP/nlp1/" class="article-date">
+	  <time datetime="2020-03-09T07:42:53.479Z" itemprop="datePublished">March 9, 2020</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/NLP-%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/">NLP(自然语言处理)</a>
+ 
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>说明：该博客代码参考于<br><a href="https://blog.csdn.net/luhuibo318/article/details/98487866" target="_blank" rel="noopener">参考博客：使用中文维基百科语料库+opencc+jieba+gensim训练一个word2vec模型</a><br><a href="https://blog.csdn.net/vivian_ll/article/details/89914219" target="_blank" rel="noopener">参考博客：使用中文维基百科训练word2vec模型</a></p>
+<h4 id="零、-模型训练环境"><a href="#零、-模型训练环境" class="headerlink" title="零、 模型训练环境"></a>零、 模型训练环境</h4><ol>
+<li><p>Windows10-X64  、 python2.7 、 python3.6</p>
+</li>
+<li><p>pip install jieba</p>
+</li>
+<li><p>pip install gensim</p>
+</li>
+</ol>
+<a id="more"></a>
+
+<h4 id="一、下载维基百科语料库"><a href="#一、下载维基百科语料库" class="headerlink" title="一、下载维基百科语料库"></a>一、下载维基百科语料库</h4><p><a href="https://dumps.wikimedia.org/zhwiki/" target="_blank" rel="noopener">数据下载地址</a><br>该博客使用的是  24-Nov-2019  的语料库<br><img src="https://img-blog.csdnimg.cn/20191205090005896.png" alt="在这里插入图片描述"></p>
+<h4 id="二、-利用WikiExtractor-py抽取正文"><a href="#二、-利用WikiExtractor-py抽取正文" class="headerlink" title="二、 利用WikiExtractor.py抽取正文"></a>二、 利用WikiExtractor.py抽取正文</h4><p><a href="https://github.com/attardi/wikiextractor/blob/master/WikiExtractor.py" target="_blank" rel="noopener">WikiExtractor.py Copy链接</a><br>直接把py文件中的源码直接复制到新的 .py 中即可。<br>下图是模型训练相关文件：<br><img src="https://img-blog.csdnimg.cn/20191205090904895.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNTk1NTA3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>执行命令</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python WiKiExtractor.py -b <span class="number">500</span>M -o zhwiki zhwiki<span class="number">-20191120</span>-pages-articles-multistream.xml.bz2</span><br></pre></td></tr></table></figure>
+
+<p>我们最终会生成zhwiki文件夹<br><img src="https://img-blog.csdnimg.cn/20191205091307665.png" alt="在这里插入图片描述"><br>得到三个文本文件<br> <strong>./zhwiki/AA/wiki_00</strong><br><strong>./zhwiki/AA/wiki_01</strong><br><strong>./zhwiki/AA/wiki_02</strong></p>
+<h4 id="三、-中文繁体转换成简体简体"><a href="#三、-中文繁体转换成简体简体" class="headerlink" title="三、 中文繁体转换成简体简体"></a>三、 中文繁体转换成简体简体</h4><h6 id="直接使用开源项目转换工具opencc"><a href="#直接使用开源项目转换工具opencc" class="headerlink" title="直接使用开源项目转换工具opencc"></a><strong>直接使用开源项目转换工具opencc</strong></h6><p><a href="https://bintray.com/package/files/byvoid/opencc/OpenCC" target="_blank" rel="noopener">转换工具下载地址</a><br>黑框框起来的是我下载的版本<br><img src="https://img-blog.csdnimg.cn/20191205092120843.png" alt="在这里插入图片描述"></p>
+<h6 id="执行文件添加到环境变量中："><a href="#执行文件添加到环境变量中：" class="headerlink" title="执行文件添加到环境变量中："></a><strong>执行文件添加到环境变量中</strong>：</h6><p>方法1. 解压后将该工具bin目录添加到环境变量中<br>方法2. 有些工具解压后灭有 bin 目录，我们首先找到opencc.exe可执行文件，将其路径添加到环境变量中<br><img src="https://img-blog.csdnimg.cn/20191205092630110.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNTk1NTA3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h6 id="运行命令"><a href="#运行命令" class="headerlink" title="运行命令"></a>运行命令</h6><p>我是在该路径中运行的命令，为了方便我先将之前的三个文件拷贝到该路径下，执行完后再拷贝到<strong>./zhwiki/</strong> 下。<br><img src="https://img-blog.csdnimg.cn/20191205093005400.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNTk1NTA3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.\opencc -i wiki_00 -o zh_wiki_00 -c  /path/to/t2s.json</span><br><span class="line">.\opencc -i wiki_01 -o zh_wiki_01 -c  /path/to/t2s.json</span><br><span class="line">.\opencc -i wiki_02 -o zh_wiki_02 -c  /path/to/t2s.json</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20191205093332974.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNTk1NTA3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>最终我把生成的zh_wiki_00等文件拷贝到 /zhwiki/ 中</p>
+<h4 id="四、符号处理-，整合文件"><a href="#四、符号处理-，整合文件" class="headerlink" title="四、符号处理 ，整合文件"></a>四、符号处理 ，整合文件</h4><p>python 2.7 环境中运行<br><strong>exec_sum.py</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!python2</span></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> codecs</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">myfun</span><span class="params">(input_file)</span>:</span></span><br><span class="line">    p1 = re.compile(<span class="string">ur'-\&#123;.*?(zh-hans|zh-cn):([^;]*?)(;.*?)?\&#125;-'</span>)</span><br><span class="line">    p2 = re.compile(<span class="string">ur'[（\(][，；。？！\s]*[）\)]'</span>)</span><br><span class="line">    p3 = re.compile(<span class="string">ur'[「『]'</span>)</span><br><span class="line">    p4 = re.compile(<span class="string">ur'[」』]'</span>)</span><br><span class="line">    outfile = codecs.open(<span class="string">'std_zh_wiki'</span>, <span class="string">'a+'</span>, <span class="string">'utf-8'</span>)</span><br><span class="line">    <span class="keyword">with</span> codecs.open(input_file, <span class="string">'r'</span>, <span class="string">'utf-8'</span>) <span class="keyword">as</span> myfile:</span><br><span class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> myfile:</span><br><span class="line">            line = p1.sub(<span class="string">ur'\2'</span>, line)</span><br><span class="line">            line = p2.sub(<span class="string">ur''</span>, line)</span><br><span class="line">            line = p3.sub(<span class="string">ur'“'</span>, line)</span><br><span class="line">            line = p4.sub(<span class="string">ur'”'</span>, line)</span><br><span class="line">            outfile.write(line)</span><br><span class="line">    outfile.close()</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="keyword">if</span> len(sys.argv) != <span class="number">2</span>:</span><br><span class="line">        print(<span class="string">"Usage: python script.py inputfile"</span>)</span><br><span class="line">        sys.exit()</span><br><span class="line">    reload(sys)</span><br><span class="line">    sys.setdefaultencoding(<span class="string">'utf-8'</span>)</span><br><span class="line">    input_file = sys.argv[<span class="number">1</span>]</span><br><span class="line">    myfun(input_file)</span><br></pre></td></tr></table></figure>
+
+<p>方法一：将三个文件处理后追加到一个文件中即 <strong>std_zh_wiki</strong> </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python .\exec_sum.py zh_wiki_00</span><br><span class="line">python .\exec_sum.py zh_wiki_01</span><br><span class="line">python .\exec_sum.py zh_wiki_02</span><br></pre></td></tr></table></figure>
+
+<p>方法二：我是使用 pycharm IDE 运行了 三次该文件，每次运行修改  input_file(zh_wiki_00、zh_wiki_01、zh_wiki_02) (更改python环境更方便)<br><img src="https://img-blog.csdnimg.cn/20191205100149228.png" alt="在这里插入图片描述"></p>
+<h4 id="五、jieba-分词操作"><a href="#五、jieba-分词操作" class="headerlink" title="五、jieba 分词操作"></a>五、jieba 分词操作</h4><p><strong>exec_cut.py</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> logging, jieba, os, re</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_stopwords</span><span class="params">()</span>:</span></span><br><span class="line">    logging.basicConfig(format=<span class="string">'%(asctime)s:%(levelname)s:%(message)s'</span>, level=logging.INFO)</span><br><span class="line">    <span class="comment"># 加载停用词表</span></span><br><span class="line">    stopword_set = set()</span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">"stopwords.txt"</span>, <span class="string">'r'</span>) <span class="keyword">as</span> stopwords:  </span><br><span class="line">        <span class="keyword">for</span> stopword <span class="keyword">in</span> stopwords:</span><br><span class="line">            stopword_set.add(stopword.strip(<span class="string">"\n"</span>))</span><br><span class="line">    <span class="keyword">return</span> stopword_set</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse_zhwiki</span><span class="params">(read_file_path, save_file_path)</span>:</span></span><br><span class="line">    <span class="comment"># 过滤掉&lt;doc&gt;</span></span><br><span class="line">    regex_str = <span class="string">"[^&lt;doc.*&gt;$]|[^&lt;/doc&gt;$]"</span></span><br><span class="line">    file = open(read_file_path, <span class="string">"r"</span>)</span><br><span class="line">    output = open(save_file_path, <span class="string">"w+"</span>)</span><br><span class="line">    content_line = file.readline()</span><br><span class="line">    stopwords = get_stopwords()</span><br><span class="line">    article_contents = <span class="string">""</span></span><br><span class="line">    <span class="keyword">while</span> content_line:</span><br><span class="line">        match_obj = re.match(regex_str, content_line)</span><br><span class="line">        content_line = content_line.strip(<span class="string">"\n"</span>)</span><br><span class="line">        <span class="keyword">if</span> len(content_line) &gt; <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">if</span> match_obj:</span><br><span class="line">                words = jieba.cut(content_line, cut_all=<span class="literal">False</span>)</span><br><span class="line">                <span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">                    <span class="keyword">if</span> word <span class="keyword">not</span> <span class="keyword">in</span> stopwords:</span><br><span class="line">                        article_contents += word + <span class="string">" "</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">if</span> len(article_contents) &gt; <span class="number">0</span>:</span><br><span class="line">                    output.write(article_contents.encode(<span class="string">'utf-8'</span>,<span class="string">'ignore'</span>)+ <span class="string">"\n"</span>)</span><br><span class="line">                    article_contents = <span class="string">""</span></span><br><span class="line">        content_line = file.readline()</span><br><span class="line">    output.close()</span><br><span class="line">parse_zhwiki(<span class="string">'./std_zh_wiki'</span>, <span class="string">'./cut_std_zh_wiki'</span>)</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>该操作也是在 python 2.7环境下操作</li>
+<li>分词时间相对较长，请耐心等待</li>
+</ol>
+<h4 id="六、-训练Word2Vec模型"><a href="#六、-训练Word2Vec模型" class="headerlink" title="六、 训练Word2Vec模型"></a>六、 训练Word2Vec模型</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> gensim.models <span class="keyword">import</span> word2vec</span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"></span><br><span class="line">logging.basicConfig(format=<span class="string">'%(asctime)s : %(levelname)s : %(message)s'</span>, level=logging.INFO)</span><br><span class="line">sentences = word2vec.LineSentence(<span class="string">'./cut_std_zh_wiki'</span>)</span><br><span class="line">model = word2vec.Word2Vec(sentences,size=<span class="number">200</span>,window=<span class="number">5</span>,min_count=<span class="number">5</span>,workers=<span class="number">4</span>)</span><br><span class="line">model.save(<span class="string">'WikiCHModel'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>训练完后，会生成三个文件<br><img src="https://img-blog.csdnimg.cn/20191205105946298.png" alt="在这里插入图片描述"></p>
+<ol>
+<li>如果python3环境下出现编码问题，请通过某些工具将文件转换成utf-8编码</li>
+<li>如果无法更改编码，请使用python2.7</li>
+</ol>
+<h4 id="七、-模型测试"><a href="#七、-模型测试" class="headerlink" title="七、 模型测试"></a>七、 模型测试</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> gensim.models <span class="keyword">import</span> word2vec</span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"><span class="keyword">from</span> gensim <span class="keyword">import</span> models</span><br><span class="line">model = word2vec.Word2Vec.load(<span class="string">'WikiCHModel'</span>)</span><br><span class="line"></span><br><span class="line">print(model.wv.similarity(<span class="string">"儿童"</span>, <span class="string">'狗'</span>)) <span class="comment">#两个词的相关性</span></span><br></pre></td></tr></table></figure>
+
+<p>若博客中内容存在问题，可在评论处留言，本人将及时更正相关内容</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/NLP-%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/">NLP(自然语言处理)</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP-%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/" rel="tag">NLP(自然语言处理)</a></li></ul>
+
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/03/09/NLP/nlp_nltk/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">解决NLTK语料库下载出错及nltk_data路径等问题</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#零、-模型训练环境"><span class="nav-number">1.</span> <span class="nav-text">零、 模型训练环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一、下载维基百科语料库"><span class="nav-number">2.</span> <span class="nav-text">一、下载维基百科语料库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、-利用WikiExtractor-py抽取正文"><span class="nav-number">3.</span> <span class="nav-text">二、 利用WikiExtractor.py抽取正文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、-中文繁体转换成简体简体"><span class="nav-number">4.</span> <span class="nav-text">三、 中文繁体转换成简体简体</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#直接使用开源项目转换工具opencc"><span class="nav-number">4.0.1.</span> <span class="nav-text">直接使用开源项目转换工具opencc</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#执行文件添加到环境变量中："><span class="nav-number">4.0.2.</span> <span class="nav-text">执行文件添加到环境变量中：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#运行命令"><span class="nav-number">4.0.3.</span> <span class="nav-text">运行命令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、符号处理-，整合文件"><span class="nav-number">5.</span> <span class="nav-text">四、符号处理 ，整合文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五、jieba-分词操作"><span class="nav-number">6.</span> <span class="nav-text">五、jieba 分词操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#六、-训练Word2Vec模型"><span class="nav-number">7.</span> <span class="nav-text">六、 训练Word2Vec模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#七、-模型测试"><span class="nav-number">8.</span> <span class="nav-text">七、 模型测试</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2020 Shaw All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/bootstrap.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
