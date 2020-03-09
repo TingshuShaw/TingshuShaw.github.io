@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>python-math标准库的使用 | Shaw</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="python" />
+  
+  
+  
+  
+  <meta name="description" content="如何查看math标准库中的相关方法:  12import mathprint(dir(math))   12345[&#39;__doc__&#39;,  &#39;__loader__&#39;, &#39;__name__&#39;, &#39;__package__&#39;, &#39;__spec__&#39;, &#39;acos&#39;, &#39;acosh&#39;, &#39;asin&#39;, &#39;asinh&#39;, &#39;atan&#39;, &#39;atan2&#39;, &#39;atanh&#39;, &#39;ceil&#39;, &#39;copysig">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python-math标准库的使用">
+<meta property="og:url" content="http://yoursite.com/2020/03/09/python/python1/index.html">
+<meta property="og:site_name" content="Shaw">
+<meta property="og:description" content="如何查看math标准库中的相关方法:  12import mathprint(dir(math))   12345[&#39;__doc__&#39;,  &#39;__loader__&#39;, &#39;__name__&#39;, &#39;__package__&#39;, &#39;__spec__&#39;, &#39;acos&#39;, &#39;acosh&#39;, &#39;asin&#39;, &#39;asinh&#39;, &#39;atan&#39;, &#39;atan2&#39;, &#39;atanh&#39;, &#39;ceil&#39;, &#39;copysig">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://www.tutsmake.com/wp-content/uploads/2020/02/Python-In-Built-Math-Functions-With-Example.jpeg">
+<meta property="article:published_time" content="2020-03-09T06:53:59.000Z">
+<meta property="article:modified_time" content="2020-03-09T07:20:42.215Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.tutsmake.com/wp-content/uploads/2020/02/Python-In-Built-Math-Functions-With-Example.jpeg">
+  
+    <link rel="alternate" href="/atom.xml" title="Shaw" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="/js/jquery-3.1.1.min.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+  <link rel="stylesheet" href="/css/fashion.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner" 
+   >
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="https://s4.aconvert.com/convert/p3r68-cdx67/aiska-5yki8.svg">
+              </a>
+            
+          </h1>
+          
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows"  style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-python/python1" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      python-math标准库的使用
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2020/03/09/python/python1/" class="article-date">
+	  <time datetime="2020-03-09T06:53:59.000Z" itemprop="datePublished">March 9, 2020</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/python/">python</a>
+ 
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://www.tutsmake.com/wp-content/uploads/2020/02/Python-In-Built-Math-Functions-With-Example.jpeg" alt=""></p>
+<h2 id="如何查看math标准库中的相关方法"><a href="#如何查看math标准库中的相关方法" class="headerlink" title="如何查看math标准库中的相关方法:  "></a>如何查看math标准库中的相关方法:  </h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line">print(dir(math))</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">'__doc__'</span>,  <span class="string">'__loader__'</span>, <span class="string">'__name__'</span>, <span class="string">'__package__'</span>, <span class="string">'__spec__'</span>, <span class="string">'acos'</span>, <span class="string">'acosh'</span>, <span class="string">'asin'</span>, <span class="string">'asinh'</span>, <span class="string">'atan'</span>, <span class="string">'atan2'</span>, </span><br><span class="line"><span class="string">'atanh'</span>, <span class="string">'ceil'</span>, <span class="string">'copysign'</span>, <span class="string">'cos'</span>, <span class="string">'cosh'</span>, <span class="string">'degrees'</span>, <span class="string">'e'</span>, <span class="string">'erf'</span>, <span class="string">'erfc'</span>, <span class="string">'exp'</span>, <span class="string">'expm1'</span>, <span class="string">'fabs'</span>, <span class="string">'factorial'</span>, <span class="string">'floor'</span>,</span><br><span class="line"> <span class="string">'fmod'</span>, <span class="string">'frexp'</span>, <span class="string">'fsum'</span>, <span class="string">'gamma'</span>, <span class="string">'gcd'</span>, <span class="string">'hypot'</span>, <span class="string">'inf'</span>, <span class="string">'isclose'</span>, <span class="string">'isfinite'</span>,<span class="string">'isinf'</span>, <span class="string">'isnan'</span>, <span class="string">'ldexp'</span>, <span class="string">'lgamma'</span>,</span><br><span class="line">  <span class="string">'log'</span>, <span class="string">'log10'</span>, <span class="string">'log1p'</span>, <span class="string">'log2'</span>, <span class="string">'modf'</span>, <span class="string">'nan'</span>, <span class="string">'pi'</span>, <span class="string">'pow'</span>, <span class="string">'radians'</span>, <span class="string">'sin'</span>, <span class="string">'sinh'</span>, </span><br><span class="line"> <span class="string">'sqrt'</span>, <span class="string">'tan'</span>, <span class="string">'tanh'</span>, <span class="string">'tau'</span>, <span class="string">'trunc'</span>]</span><br></pre></td></tr></table></figure>
+
+<p><em>ps:结果的是以列表的形式呈现出来的</em>  </p>
+<a id="more"></a>
+
+
+
+<h2 id="库中方法分类-python3-6"><a href="#库中方法分类-python3-6" class="headerlink" title="库中方法分类(python3.6)"></a>库中方法分类(python3.6)</h2><table>
+<thead>
+<tr>
+<th align="center">类别</th>
+<th align="center">个数</th>
+<th align="center">详情</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">三角函数类</td>
+<td align="center">13</td>
+<td align="center">cos(),cosh(),acos()acosh(),<br>sin(),sinh(),asin(),asinh(),<br>tan(),tanh(),atan(),atanh(),atan2()</td>
+</tr>
+<tr>
+<td align="center">常数类</td>
+<td align="center">3</td>
+<td align="center">pi,e,tau(2*pi)</td>
+</tr>
+<tr>
+<td align="center">常非数类</td>
+<td align="center">2</td>
+<td align="center">inf&lt;无穷&gt;,nan&lt;不是数&gt;</td>
+</tr>
+<tr>
+<td align="center">取整</td>
+<td align="center">3+1</td>
+<td align="center">ceil(),floor(),round()<br>&lt;round()为python内置函数直接调用即可&gt;<br>trunc()&lt;将小数部分直接砍掉&gt;–&gt;trunc(2.58585458678465)==2</td>
+</tr>
+<tr>
+<td align="center">is&lt;…&gt;判断函数</td>
+<td align="center">4</td>
+<td align="center">isclose(),isinf(),ifnan(),isfinite()</td>
+</tr>
+<tr>
+<td align="center">常规计算操作</td>
+<td align="center">7</td>
+<td align="center">求和:fsum();开方:sqrt();最小公约数:gcd();阶乘:factorial()<br>模运算:fmod(x,y),modf()&lt;modf()展现小数部分&gt;<br>绝对值:fabs(),abs() &lt;abs()为python内置函数直接调用&gt;<br></td>
+</tr>
+<tr>
+<td align="center">幂运算</td>
+<td align="center">6</td>
+<td align="center">exp(),frexp(),frex(),expm1(),pow(),ldexp(x,i)==x<em>(2*</em>i)</td>
+</tr>
+<tr>
+<td align="center">对数</td>
+<td align="center">4</td>
+<td align="center">log(),log10(),loglp(),log2()</td>
+</tr>
+<tr>
+<td align="center">魔法方法</td>
+<td align="center">5</td>
+<td align="center"><code>&#39;__doc__&#39;,  &#39;__loader__&#39;, &#39;__name__&#39;, &#39;__package__&#39;, &#39;__spec__&#39;</code></td>
+</tr>
+<tr>
+<td align="center">判断函数正确性</td>
+<td align="center">2</td>
+<td align="center">erf(),erfc()</td>
+</tr>
+<tr>
+<td align="center">复杂数学公式实现</td>
+<td align="center">5</td>
+<td align="center">gamma函数:gamma(),lgamma()<br>计算三角形斜边函数:hypot()<br>弧度,角度之间转换:degrees()&lt;弧-&gt;角&gt;,radians()&lt;角-&gt;弧&gt;</td>
+</tr>
+</tbody></table>
+<h2 id="方法使用过程中的注意事项"><a href="#方法使用过程中的注意事项" class="headerlink" title="方法使用过程中的注意事项"></a>方法使用过程中的注意事项</h2><p>1.相同功能的函数其准确性的比较: exp(2) &gt; e**2 ; log10(x) &gt; log(x,10)<br>2.相同功能函数其执行速度比较: abs(x) &gt; fabs(x) (x必须为数值型)<br>3.<a href="https://docs.python.org/zh-cn/3/library/math.html" target="_blank" rel="noopener">python-math库 学习手册(官方资料)</a></p>
+<p>ps:整理过程中有不恰当的地方可以在下方留言(＾Ｕ＾)ノ~ＹＯ   ?  </p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/python/">python</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/03/09/NLP/nlp_nltk/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          解决NLTK语料库下载出错及nltk_data路径等问题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/03/09/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何查看math标准库中的相关方法"><span class="nav-number">1.</span> <span class="nav-text">如何查看math标准库中的相关方法:  </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#库中方法分类-python3-6"><span class="nav-number">2.</span> <span class="nav-text">库中方法分类(python3.6)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法使用过程中的注意事项"><span class="nav-number">3.</span> <span class="nav-text">方法使用过程中的注意事项</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2020 Shaw All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/bootstrap.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
