@@ -106,7 +106,7 @@
         
           <section id="main">
   
-    <article id="post-mysql-data迁移"  class="article article-type-post" itemscope itemprop="blogPost" >
+    <article id="post-databases/mysql-data迁移"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -114,7 +114,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2020/03/19/mysql-data%E8%BF%81%E7%A7%BB/">Windows 10下进行MySQL数据文件的转移</a>
+      <a class="article-title" href="/2020/03/19/databases/mysql-data%E8%BF%81%E7%A7%BB/">Windows 10下进行MySQL数据文件的转移</a>
     </h1>
   
 
@@ -122,7 +122,7 @@
     
     <div class="article-meta">
       
-	<a href="/2020/03/19/mysql-data%E8%BF%81%E7%A7%BB/" class="article-date">
+	<a href="/2020/03/19/databases/mysql-data%E8%BF%81%E7%A7%BB/" class="article-date">
 	  <time datetime="2020-03-19T02:09:04.922Z" itemprop="datePublished">March 19, 2020</time>
 	</a>
 
@@ -134,26 +134,18 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>​        在进行数据分析的过程中，“基石”便是数据，可在使用过程中，存储在某个盘中的数据会不断累积，特别是MySQL的默认安装路径为C盘(<strong>C:\Program Files\MySQL\MySQL Server 8.0</strong>)，将会导致C盘内存越用越小。同时个人因为各种需求也需要进行数据文件的转移。</p>
-<h5 id="转移文件"><a href="#转移文件" class="headerlink" title="转移文件"></a>转移文件</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">**  windows下数据文件为隐藏文件 基本都在 C:\ProgramData 该路径下 **</span><br><span class="line"></span><br><span class="line">Step1:找到 C:\ProgramData\MySQL\MySQL Server 8.0 下的 Data 文件</span><br><span class="line">Setp2: 复制Data文件到 转移目标路径下</span><br><span class="line">		F:\Data\MySQL Server 8.0\ --&gt; F:\Data\MySQL Server 8.0\Data</span><br></pre></td></tr></table></figure>
+        
 
-<h5 id="关闭MySQL服务"><a href="#关闭MySQL服务" class="headerlink" title="关闭MySQL服务"></a>关闭MySQL服务</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net stop mysql80</span><br></pre></td></tr></table></figure>
+          
+          <div class="entry-summary">
+          ​        在进行数据分析的过程中，“基石”便是数据，可在使用过程中，存储在某个盘中的数据会不断累积，特别是MySQL的默认安装路径为C盘(C:\Program Files\MySQL\MySQL Server 8.0)，将会导致C盘内存越用越小。同时个人因为各种需求也需要进行数据文件的转移。
+转移文件12345**  windows下数据文件为隐藏文件 基本都在 C:\ProgramData 该路径下 **Step1:找到 C:\ProgramData\MySQL\MySQL Server 8.0 下的 Data 文件Setp2: 复制Data文件到 转移目标路径下		F:\Data\MySQL Server 8.0\ --&gt; F:\Data\MySQL Server 8.0\Data
 
-<h5 id="更改配置——数据存储路径"><a href="#更改配置——数据存储路径" class="headerlink" title="更改配置——数据存储路径"></a>更改配置——数据存储路径</h5><p><img src="F:%5CMy_Study%5CBlog_Shaw%5CmyBlog%5Csource_posts%5C1.PNG" alt=""></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Step1:找到 C:\ProgramData\MySQL\MySQL Server 8.0\my.ini  打开文件进行编辑</span><br><span class="line">Setp2: </span><br><span class="line"></span><br><span class="line"># Path to the database root</span><br><span class="line">#datadir&#x3D;C:&#x2F;ProgramData&#x2F;MySQL&#x2F;MySQL Server 8.0&#x2F;Data</span><br><span class="line">                ⬇ (将上面原路径注释，插入转移的目标路径)</span><br><span class="line">datadir&#x3D;F:&#x2F;Data&#x2F;MySQL Server 8.0&#x2F;Data</span><br></pre></td></tr></table></figure>
-
-<h5 id="启动MySQL服务"><a href="#启动MySQL服务" class="headerlink" title="启动MySQL服务"></a>启动MySQL服务</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net start mysql80</span><br></pre></td></tr></table></figure>
-
-<h5 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h5><p>通过新建DataBases，查看文件是否新建文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#进入mysql</span><br><span class="line">mysql -u root -p</span><br><span class="line">create databases test;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
+        
+          <p class="article-more-link">
+            <a href="/2020/03/19/databases/mysql-data%E8%BF%81%E7%A7%BB/#more">Continue Reading →</a>
+          </p>
+        </div>
       
     </div>
     <footer class="entry-meta entry-footer">
@@ -690,7 +682,7 @@ More info: Writing
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2020/03/19/mysql-data%E8%BF%81%E7%A7%BB/">Windows 10下进行MySQL数据文件的转移</a></h6>
+              <h6 style="margin: 0;"><a href="/2020/03/19/databases/mysql-data%E8%BF%81%E7%A7%BB/">Windows 10下进行MySQL数据文件的转移</a></h6>
               <span>March 19, 2020</span>
             </div>
 
