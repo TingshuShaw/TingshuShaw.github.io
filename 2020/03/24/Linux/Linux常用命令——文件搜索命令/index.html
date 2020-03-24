@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    
+<script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>linux——文件搜索命令 | Shaw</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Linux命令" />
+  
+  
+  
+  
+  <meta name="description" content="文件搜索命令(比windows强大)文件搜索命令locate （搜索速度较快，但只能按照文件名搜索）locate命令格式 123456# 在后台数据库中按照文件名搜索，搜 索速度更快locate 文件名#locate命令搜索的后台数据库(Linux版本不同数据库的名称可能不同)&#x2F;var&#x2F;lib&#x2F;mlocate#若要查询当天新建数据库，需要强制更新数据库updatedb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux——文件搜索命令">
+<meta property="og:url" content="http://yoursite.com/2020/03/24/Linux/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E2%80%94%E2%80%94%E6%96%87%E4%BB%B6%E6%90%9C%E7%B4%A2%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:site_name" content="Shaw">
+<meta property="og:description" content="文件搜索命令(比windows强大)文件搜索命令locate （搜索速度较快，但只能按照文件名搜索）locate命令格式 123456# 在后台数据库中按照文件名搜索，搜 索速度更快locate 文件名#locate命令搜索的后台数据库(Linux版本不同数据库的名称可能不同)&#x2F;var&#x2F;lib&#x2F;mlocate#若要查询当天新建数据库，需要强制更新数据库updatedb">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-24T14:14:18.000Z">
+<meta property="article:modified_time" content="2020-03-24T14:15:35.833Z">
+<meta property="article:tag" content="Linux命令">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Shaw" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" >
+  <link rel="stylesheet" href="/css/hiero.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+  
+
+  <!-- Custom CSS -->
+  
+<link rel="stylesheet" href="/css/my.css">
+
+  <!-- Google Adsense -->
+  
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+  themeMenus["/categories"] = "Categories"; 
+
+  themeMenus["/tags"] = "Tags"; 
+
+  themeMenus["/about"] = "About"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="http://h.hiphotos.baidu.com/zhidao/wh%3D450%2C600/sign=0b995d383f292df59796a41189017056/d8f9d72a6059252d4b5d8513319b033b5bb5b95b.jpg">
+              </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt="" src="">
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=128299422,1502359480&fm=26&gp=0.jpg".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Linux/Linux常用命令——文件搜索命令" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Linux——文件搜索命令
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2020/03/24/Linux/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E2%80%94%E2%80%94%E6%96%87%E4%BB%B6%E6%90%9C%E7%B4%A2%E5%91%BD%E4%BB%A4/" class="article-date">
+	  <time datetime="2020-03-24T14:14:18.000Z" itemprop="datePublished">March 24, 2020</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="文件搜索命令-比windows强大"><a href="#文件搜索命令-比windows强大" class="headerlink" title="文件搜索命令(比windows强大)"></a>文件搜索命令(比windows强大)</h5><h6 id="文件搜索命令locate-（搜索速度较快，但只能按照文件名搜索）"><a href="#文件搜索命令locate-（搜索速度较快，但只能按照文件名搜索）" class="headerlink" title="文件搜索命令locate （搜索速度较快，但只能按照文件名搜索）"></a>文件搜索命令locate （搜索速度较快，但只能按照文件名搜索）</h6><p>locate命令格式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 在后台数据库中按照文件名搜索，搜 索速度更快</span><br><span class="line">locate 文件名</span><br><span class="line">#locate命令搜索的后台数据库(Linux版本不同数据库的名称可能不同)</span><br><span class="line">&#x2F;var&#x2F;lib&#x2F;mlocate</span><br><span class="line">#若要查询当天新建数据库，需要强制更新数据库</span><br><span class="line">updatedb</span><br></pre></td></tr></table></figure>
+
+<p>/etc/updatedb.conf配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#开启搜索限制，YES表示以下规则全都生效</span><br><span class="line">PRUNE_BIND_MOUNTS &#x3D; &quot;yes&quot;</span><br><span class="line">#搜索时，不搜索文件系统</span><br><span class="line">PRUNEFS&#x3D;</span><br><span class="line">#搜索时，不搜索文件类型</span><br><span class="line">PRUNENAMES&#x3D;</span><br><span class="line">#搜索时，不搜索的路径</span><br><span class="line">PRUNEPATHS&#x3D;</span><br></pre></td></tr></table></figure>
+
+<h6 id="命令搜索命令whereis、which"><a href="#命令搜索命令whereis、which" class="headerlink" title="命令搜索命令whereis、which"></a>命令搜索命令whereis、which</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#whereis 命令名 (只能查询系统文件)</span><br><span class="line">	-b: 只查找可执行文件</span><br><span class="line">	-m: 只查找帮助文件</span><br><span class="line">#which 命令名 (位置+别名&lt;非所有命令&gt;)</span><br></pre></td></tr></table></figure>
+
+<h6 id="PATH环境变量"><a href="#PATH环境变量" class="headerlink" title="PATH环境变量"></a>PATH环境变量</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#定义用户操作环境的变量(定义的是系统搜索命令的路径)</span><br><span class="line">echo $PATH</span><br></pre></td></tr></table></figure>
+
+<h6 id="文件搜索命令find-所有文件进行遍历"><a href="#文件搜索命令find-所有文件进行遍历" class="headerlink" title="文件搜索命令find (所有文件进行遍历)"></a>文件搜索命令find (所有文件进行遍历)</h6><p>find 完全匹配</p>
+<p>find命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#搜索文件</span><br><span class="line">find [搜索范围] [搜索条件]</span><br><span class="line">#避免大范围搜索，会非常消耗系统资源</span><br><span class="line">#find是在系统当中搜索符合体哦阿健的文件名。如果需要匹配，使用通配符匹配，通配符是完全匹配</span><br><span class="line">find &#x2F; -name install.log</span><br><span class="line">#搜索以c结尾或者以d结尾</span><br><span class="line">find &#x2F;root -name &quot;*[cd]&quot;</span><br></pre></td></tr></table></figure>
+
+<p>Linux中的通配符</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">*： 匹配任意内容</span><br><span class="line"></span><br><span class="line">?:    匹配任意一个字符</span><br><span class="line"></span><br><span class="line">[]:  匹配任意一个中括号内的字符</span><br></pre></td></tr></table></figure>
+
+<p>find命令eg</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">#不区分大小写</span><br><span class="line">find &#x2F;root -iname install.log</span><br><span class="line">#按照所有者搜索</span><br><span class="line">find &#x2F;root -user root</span><br><span class="line">#查找没有所有者的文件</span><br><span class="line">find &#x2F;root -nouser</span><br><span class="line">#查找10天前修改的文件</span><br><span class="line">find &#x2F;var&#x2F;log&#x2F; -mtime +10</span><br><span class="line">	-10:10天内修改文件</span><br><span class="line">	10: 10天当天修改的文件</span><br><span class="line">	+10: 10天前修改的文件</span><br><span class="line">	atime: 文件访问时间</span><br><span class="line">	ctime: 改变文件属性</span><br><span class="line">	mtime: 修改文件内容</span><br><span class="line">#查找文件大小是25KB的文件</span><br><span class="line">find . -size 25K</span><br><span class="line">	-25k: 小于25KB的文件</span><br><span class="line">	25: 等于25kb的文件</span><br><span class="line">	+25: 大于25KB的文件</span><br><span class="line">#大小为数据块，根据扇区</span><br><span class="line">find &#x2F;root -size 25</span><br><span class="line">#查找i节点是262422的文件</span><br><span class="line">ls -i </span><br><span class="line">find . -inum 262422</span><br><span class="line">#查找&#x2F;etc&#x2F;目录下，大于20kb并且小于50kb的文件</span><br><span class="line">find &#x2F;etc -size _20k -a -size -50k</span><br><span class="line">	-a and </span><br><span class="line">	-o or</span><br><span class="line">#查找&#x2F;etc&#x2F;目录下，大于20kb并且小于50kb的文件，显示详细信息</span><br><span class="line">#-exec&#x2F;-ok 命令 &#123;&#125; \; 对搜索结果执行操作</span><br><span class="line">find &#x2F;etc -size _20k -a -size -50k -exec ls -lh &#123;&#125; \;</span><br></pre></td></tr></table></figure>
+
+<h6 id="字符串搜索命令grep"><a href="#字符串搜索命令grep" class="headerlink" title="字符串搜索命令grep"></a>字符串搜索命令grep</h6><p>grep 包含匹配</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#在文件中匹配符合条件的字符串</span><br><span class="line">grep [option] string filename</span><br><span class="line">[option]:</span><br><span class="line">	-i 忽略大小写</span><br><span class="line">	-v 排除指定字符串</span><br></pre></td></tr></table></figure>
+
+<p>grep-eg</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#查看size</span><br><span class="line">grep &quot;size&quot; anaconda-ks.cfg</span><br><span class="line"></span><br><span class="line">grep -v &quot;size&quot; anaconda-ks.cfg</span><br><span class="line">[options]:</span><br><span class="line">	-v: 取反</span><br></pre></td></tr></table></figure>
+
+<h6 id="find与grep的区别"><a href="#find与grep的区别" class="headerlink" title="find与grep的区别"></a>find与grep的区别</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find:在系统中搜索符合条件的文件名，如果需要匹配使用通配符匹配，通配符是完全匹配</span><br><span class="line">grep:在文件中搜索符合条件的字符串，如果需要匹配，使用正则表达式进行匹配，正则表达式时包含匹配。</span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E5%91%BD%E4%BB%A4/" rel="tag">Linux命令</a></li></ul>
+
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/03/23/Linux/Linuxux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E2%80%94%E2%80%94%E5%8E%8B%E7%BC%A9%E4%B8%8E%E8%A7%A3%E5%8E%8B%E6%93%8D%E4%BD%9C/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Linux常用命令——压缩与解压操作</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#文件搜索命令-比windows强大"><span class="nav-number">1.</span> <span class="nav-text">文件搜索命令(比windows强大)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#文件搜索命令locate-（搜索速度较快，但只能按照文件名搜索）"><span class="nav-number">1.1.</span> <span class="nav-text">文件搜索命令locate （搜索速度较快，但只能按照文件名搜索）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#命令搜索命令whereis、which"><span class="nav-number">1.2.</span> <span class="nav-text">命令搜索命令whereis、which</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#PATH环境变量"><span class="nav-number">1.3.</span> <span class="nav-text">PATH环境变量</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#文件搜索命令find-所有文件进行遍历"><span class="nav-number">1.4.</span> <span class="nav-text">文件搜索命令find (所有文件进行遍历)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#字符串搜索命令grep"><span class="nav-number">1.5.</span> <span class="nav-text">字符串搜索命令grep</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#find与grep的区别"><span class="nav-number">1.6.</span> <span class="nav-text">find与grep的区别</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2020 Shaw All Rights Reserved.
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+
+<script src="/js/my.js"></script>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/scripts.js"></script>
+
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
