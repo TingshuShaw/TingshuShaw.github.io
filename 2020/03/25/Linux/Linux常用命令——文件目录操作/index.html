@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    
+<script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>linux常用命令——文件目录操作 | Shaw</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Linux命令" />
+  
+  
+  
+  
+  <meta name="description" content="命令格式命令提示符123456[root@localhost ~]#	root: 当前登录用户	localhost: 主机名	~: 当前所在目录(家目录)	#: 超级用户的提示符	$: 普通用户提示符">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux常用命令——文件目录操作">
+<meta property="og:url" content="http://yoursite.com/2020/03/25/Linux/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E2%80%94%E2%80%94%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:site_name" content="Shaw">
+<meta property="og:description" content="命令格式命令提示符123456[root@localhost ~]#	root: 当前登录用户	localhost: 主机名	~: 当前所在目录(家目录)	#: 超级用户的提示符	$: 普通用户提示符">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-25T04:25:43.000Z">
+<meta property="article:modified_time" content="2020-03-25T04:30:34.591Z">
+<meta property="article:tag" content="Linux命令">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Shaw" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" >
+  <link rel="stylesheet" href="/css/hiero.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+  
+
+  <!-- Custom CSS -->
+  
+<link rel="stylesheet" href="/css/my.css">
+
+  <!-- Google Adsense -->
+  
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+  themeMenus["/categories"] = "Categories"; 
+
+  themeMenus["/tags"] = "Tags"; 
+
+  themeMenus["/about"] = "About"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="http://h.hiphotos.baidu.com/zhidao/wh%3D450%2C600/sign=0b995d383f292df59796a41189017056/d8f9d72a6059252d4b5d8513319b033b5bb5b95b.jpg">
+              </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt="" src="">
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=128299422,1502359480&fm=26&gp=0.jpg".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Linux/Linux常用命令——文件目录操作" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Linux常用命令——文件目录操作
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2020/03/25/Linux/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E2%80%94%E2%80%94%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E6%93%8D%E4%BD%9C/" class="article-date">
+	  <time datetime="2020-03-25T04:25:43.000Z" itemprop="datePublished">March 25, 2020</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h5><h6 id="命令提示符"><a href="#命令提示符" class="headerlink" title="命令提示符"></a>命令提示符</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]#</span><br><span class="line">	root: 当前登录用户</span><br><span class="line">	localhost: 主机名</span><br><span class="line">	~: 当前所在目录(家目录)</span><br><span class="line">	#: 超级用户的提示符</span><br><span class="line">	$: 普通用户提示符</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h6 id="命令格式-1"><a href="#命令格式-1" class="headerlink" title="命令格式"></a>命令格式</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">命令 [选项] [参数]</span><br><span class="line">注意：个别命令使用不遵循此格式，当有多个选项时，可以写在一起简化选项与完整选项 -a &lt;&#x3D;&#x3D;&gt; --all</span><br></pre></td></tr></table></figure>
+
+<h6 id="查询目录中内容-ls"><a href="#查询目录中内容-ls" class="headerlink" title="查询目录中内容:ls"></a>查询目录中内容:ls</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">ls [option] [file&#x2F;catalogue]</span><br><span class="line">[options]:</span><br><span class="line">	-a:显示所有文件，包括隐藏文件</span><br><span class="line">	-l:显示详细信息</span><br><span class="line">	-d:查看目录属性</span><br><span class="line">	-h:人性化显示文件大小</span><br><span class="line">	-i:显示inode</span><br><span class="line"></span><br><span class="line">-rw-r--r--</span><br><span class="line">	-文件类型(-文件 d目录 l软连接文件)</span><br><span class="line">	其他文件类型: 块设备文件、字符设备文件、套接字文件和管道文件</span><br><span class="line">	rw-     r--     r--</span><br><span class="line">	u所有者  g所属组   o其他人</span><br><span class="line">r:读</span><br><span class="line">w:写</span><br><span class="line">x:执行</span><br><span class="line"></span><br><span class="line">-rw-------. 1 root root 1207 1月 14 18:18 anaconda-ks.cfg</span><br><span class="line">	. : ACL权限</span><br><span class="line">	1 : 引用计数，文件被调用次数</span><br><span class="line">	root: 文件主人</span><br><span class="line">	root: 所属组</span><br><span class="line">	1207: 文件大小(byte)(ls -lh:显示人能看得懂的)</span><br><span class="line">	1月 14 18:18: 最后一次修改时间</span><br></pre></td></tr></table></figure>
+
+<h5 id="目录处理命令"><a href="#目录处理命令" class="headerlink" title="目录处理命令"></a>目录处理命令</h5><h6 id="建立目录-mkdir"><a href="#建立目录-mkdir" class="headerlink" title="建立目录: mkdir"></a>建立目录: mkdir</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p [目录名]</span><br><span class="line">	-p 递归创建</span><br></pre></td></tr></table></figure>
+
+<h6 id="切换所在目录-cd"><a href="#切换所在目录-cd" class="headerlink" title="切换所在目录: cd"></a>切换所在目录: cd</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd [目录]</span><br><span class="line">简化操作：</span><br><span class="line">	cd ~ :进入当前用户的家目录</span><br><span class="line">	cd   :</span><br><span class="line">	cd - :进入上次目录</span><br><span class="line">	cd ..:进入上一级目录</span><br><span class="line">	cd . :进入当前目录</span><br></pre></td></tr></table></figure>
+
+<h6 id="查询所在目录位置-pwd"><a href="#查询所在目录位置-pwd" class="headerlink" title="查询所在目录位置: pwd"></a>查询所在目录位置: pwd</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pwd :print working directory</span><br></pre></td></tr></table></figure>
+
+<h6 id="删除空目录-rmdir"><a href="#删除空目录-rmdir" class="headerlink" title="删除空目录: rmdir"></a>删除空目录: rmdir</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rmdir [目录名] : remove empty directories</span><br></pre></td></tr></table></figure>
+
+<h6 id="删除文件或目录-rm"><a href="#删除文件或目录-rm" class="headerlink" title="删除文件或目录: rm"></a>删除文件或目录: rm</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rm -rf [文件或目录]</span><br><span class="line">rm -rf &#x2F;  #删除根目录下所有文件--自杀</span><br><span class="line">	-r: 删除目录</span><br><span class="line">	-f: 强制</span><br></pre></td></tr></table></figure>
+
+<h6 id="复制命令-cp"><a href="#复制命令-cp" class="headerlink" title="复制命令 :cp"></a>复制命令 :cp</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cp [options] [orgfile&#x2F;catelogue] [target_catelogue]</span><br><span class="line">[options]:</span><br><span class="line">	-r:复制目录</span><br><span class="line">	-p:连带文件属性复制</span><br><span class="line">	-d:若源文件时链接文件，则复制链接属性</span><br><span class="line">	-a:相当于 -pdr</span><br></pre></td></tr></table></figure>
+
+<h6 id="剪切或改名命令-mv"><a href="#剪切或改名命令-mv" class="headerlink" title="剪切或改名命令 : mv"></a>剪切或改名命令 : mv</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv [原文件或者目录] [目标目录]</span><br></pre></td></tr></table></figure>
+
+<h5 id="常见目录作用"><a href="#常见目录作用" class="headerlink" title="常见目录作用"></a>常见目录作用</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost &#x2F;]# ls</span><br><span class="line">bin :命令保存目录（普通用户就可以读取命令）</span><br><span class="line">sbin:命令保存目录(super_user才能使用)</span><br><span class="line">cgroup:</span><br><span class="line">etc:配置文件保存目录</span><br><span class="line">lib:系统库保存目录</span><br><span class="line">media:挂载目录</span><br><span class="line">mnt:系统挂载目录</span><br><span class="line">opt:</span><br><span class="line">root:超级用户的家目录</span><br><span class="line">selinux:</span><br><span class="line">sys:</span><br><span class="line">usr:</span><br><span class="line">boot:启动目录，启动相关文件</span><br><span class="line">dev:设备文件保存目录(别动)</span><br><span class="line">home:普通用户的家目录</span><br><span class="line">lost+found:</span><br><span class="line">misc:</span><br><span class="line">net:</span><br><span class="line">proc:直接写入内存</span><br><span class="line">srv:</span><br><span class="line">tmp:临时目录</span><br><span class="line">var:系统相关文档目录</span><br><span class="line"></span><br><span class="line">#proc和sys目录不能直接操作，这两个目录保存的时内存的过载点</span><br><span class="line"></span><br><span class="line">[root@localhost &#x2F;]# ls usr&#x2F;</span><br><span class="line">bin:</span><br><span class="line">etc:</span><br><span class="line">games:</span><br><span class="line">include:</span><br><span class="line">lib:</span><br><span class="line">libexec:</span><br><span class="line">local:</span><br><span class="line">sbin:</span><br><span class="line">share:</span><br><span class="line">src:</span><br><span class="line">tmp:</span><br><span class="line"></span><br><span class="line">#根目录下的bin和sbin,usr目录下的bin和sbin,这四个目录都是用来保存系统命令的</span><br></pre></td></tr></table></figure>
+
+<h5 id="链接命令"><a href="#链接命令" class="headerlink" title="链接命令"></a>链接命令</h5><h6 id="连接命令-ln"><a href="#连接命令-ln" class="headerlink" title="连接命令:ln"></a>连接命令:ln</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ln -s [原文件] [目标文件]</span><br><span class="line">[options]:</span><br><span class="line">	-s 创建软连接</span><br></pre></td></tr></table></figure>
+
+<h6 id="硬链接特征"><a href="#硬链接特征" class="headerlink" title="硬链接特征"></a>硬链接特征</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.拥有相同的i节点和存储block块，可以看作时同一个文件</span><br><span class="line">2.可通过i节点识别</span><br><span class="line">3.不能跨分区</span><br><span class="line">4.不能针对目录使用</span><br></pre></td></tr></table></figure>
+
+<h6 id="软连接特征"><a href="#软连接特征" class="headerlink" title="软连接特征"></a>软连接特征</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.类似windows快捷方式</span><br><span class="line">2.软连接拥有自己的I节点和block块，但是数据块中只保存文件的文件名和I节点号，但没有实际的文件书数据</span><br><span class="line">3.lrwxrwxrwx l软连接：软连接的文件权限都为rwxrwxrwx</span><br><span class="line">4.修改任意文件，另一个都改变</span><br><span class="line">5.删除原文件，软连接不能使用</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E5%91%BD%E4%BB%A4/" rel="tag">Linux命令</a></li></ul>
+
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/03/25/Linux/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E2%80%94%E2%80%94%E7%94%A8%E6%88%B7%E6%93%8D%E4%BD%9C/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Linux常用命令——用户操作
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/03/24/Linux/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E2%80%94%E2%80%94%E6%96%87%E4%BB%B6%E6%90%9C%E7%B4%A2%E5%91%BD%E4%BB%A4/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Linux——文件搜索命令</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#命令格式"><span class="nav-number">1.</span> <span class="nav-text">命令格式</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#命令提示符"><span class="nav-number">1.1.</span> <span class="nav-text">命令提示符</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#命令格式-1"><span class="nav-number">1.2.</span> <span class="nav-text">命令格式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#查询目录中内容-ls"><span class="nav-number">1.3.</span> <span class="nav-text">查询目录中内容:ls</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#目录处理命令"><span class="nav-number">2.</span> <span class="nav-text">目录处理命令</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#建立目录-mkdir"><span class="nav-number">2.1.</span> <span class="nav-text">建立目录: mkdir</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#切换所在目录-cd"><span class="nav-number">2.2.</span> <span class="nav-text">切换所在目录: cd</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#查询所在目录位置-pwd"><span class="nav-number">2.3.</span> <span class="nav-text">查询所在目录位置: pwd</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#删除空目录-rmdir"><span class="nav-number">2.4.</span> <span class="nav-text">删除空目录: rmdir</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#删除文件或目录-rm"><span class="nav-number">2.5.</span> <span class="nav-text">删除文件或目录: rm</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#复制命令-cp"><span class="nav-number">2.6.</span> <span class="nav-text">复制命令 :cp</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#剪切或改名命令-mv"><span class="nav-number">2.7.</span> <span class="nav-text">剪切或改名命令 : mv</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#常见目录作用"><span class="nav-number">3.</span> <span class="nav-text">常见目录作用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#链接命令"><span class="nav-number">4.</span> <span class="nav-text">链接命令</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#连接命令-ln"><span class="nav-number">4.1.</span> <span class="nav-text">连接命令:ln</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#硬链接特征"><span class="nav-number">4.2.</span> <span class="nav-text">硬链接特征</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#软连接特征"><span class="nav-number">4.3.</span> <span class="nav-text">软连接特征</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2020 Shaw All Rights Reserved.
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+
+<script src="/js/my.js"></script>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/scripts.js"></script>
+
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
