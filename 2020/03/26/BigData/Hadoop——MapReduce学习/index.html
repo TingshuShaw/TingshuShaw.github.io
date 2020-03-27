@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    
+<script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>hadoop——mapreduce学习 | Shaw</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Hadoop" />
+  
+  
+  
+  
+  <meta name="description" content="本章从MapReduce的原理、工作机制、应用开发、设计模式、算法时间和性能调优进行了详细的介绍 目标： 1、了解MapReduce原理(map函数、reduce函数、shuffle过程) 2、掌握MapReduce相关算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hadoop——MapReduce学习">
+<meta property="og:url" content="http://yoursite.com/2020/03/26/BigData/Hadoop%E2%80%94%E2%80%94MapReduce%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Shaw">
+<meta property="og:description" content="本章从MapReduce的原理、工作机制、应用开发、设计模式、算法时间和性能调优进行了详细的介绍 目标： 1、了解MapReduce原理(map函数、reduce函数、shuffle过程) 2、掌握MapReduce相关算法">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://insight.ipieuvre.com/doc/exper/1e146ce6-91ad-11e9-beeb-00215ec892f4/img/01.png">
+<meta property="og:image" content="https://insight.ipieuvre.com/doc/exper/1e146ce6-91ad-11e9-beeb-00215ec892f4/img/12.png">
+<meta property="article:published_time" content="2020-03-26T00:51:50.000Z">
+<meta property="article:modified_time" content="2020-03-27T03:49:58.278Z">
+<meta property="article:tag" content="Hadoop">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://insight.ipieuvre.com/doc/exper/1e146ce6-91ad-11e9-beeb-00215ec892f4/img/01.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Shaw" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" >
+  <link rel="stylesheet" href="/css/hiero.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+  
+
+  <!-- Custom CSS -->
+  
+<link rel="stylesheet" href="/css/my.css">
+
+  <!-- Google Adsense -->
+  
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+  themeMenus["/categories"] = "Categories"; 
+
+  themeMenus["/tags"] = "Tags"; 
+
+  themeMenus["/about"] = "About"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="http://h.hiphotos.baidu.com/zhidao/wh%3D450%2C600/sign=0b995d383f292df59796a41189017056/d8f9d72a6059252d4b5d8513319b033b5bb5b95b.jpg">
+              </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt="" src="">
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=128299422,1502359480&fm=26&gp=0.jpg".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-BigData/Hadoop——MapReduce学习" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Hadoop——MapReduce学习
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2020/03/26/BigData/Hadoop%E2%80%94%E2%80%94MapReduce%E5%AD%A6%E4%B9%A0/" class="article-date">
+	  <time datetime="2020-03-26T00:51:50.000Z" itemprop="datePublished">March 26, 2020</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本章从MapReduce的原理、工作机制、应用开发、设计模式、算法时间和性能调优进行了详细的介绍</p>
+<p>目标：</p>
+<p>1、了解MapReduce原理(map函数、reduce函数、shuffle过程)</p>
+<p>2、掌握MapReduce相关算法</p>
+<a id="more"></a>
+
+<h5 id="MapReduce学习——习题"><a href="#MapReduce学习——习题" class="headerlink" title="MapReduce学习——习题"></a>MapReduce学习——习题</h5><p>1.对MapReduce的体系结构，以下说法正确的是：</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> <p>A.分布式编程架构</p>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <p>B.以数据为中心，更看重吞吐量</p>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <p>C.分而治之的思想</p>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <p>D.将一个任务分解成多个任务</p>
+</li>
+</ul>
+<p>2.MapReduce为了保证任务的正常执行，采用（）等多种容错机制</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> <p>A.重复执行</p>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <p>B.重新开始整个任务</p>
+</li>
+<li><input disabled="" type="checkbox"> <p>C.推测执行</p>
+</li>
+<li><input disabled="" type="checkbox"> <p>D.直接丢弃执行效率低的作业</p>
+</li>
+</ul>
+<p>3.对Hadoop中JobTacker的工作角色，以下说法正确的是（）</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> <p>A.作业调度</p>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <p>B.分配任务</p>
+</li>
+<li><input disabled="" type="checkbox"> <p>C.监控CPU运行效率</p>
+</li>
+<li><input checked="" disabled="" type="checkbox"> <p>D.监控任务执行进度</p>
+</li>
+</ul>
+<p>4.在Hadoop中每个应用程序被表示成一个作业，每个作业又被分成多个任务，JobTracker的负责作业的分解、状态监控以及资源管理</p>
+<p>5.Map的主要工作是将任务分解成多个任务</p>
+<h5 id="MapReduce实例——WordCount"><a href="#MapReduce实例——WordCount" class="headerlink" title="MapReduce实例——WordCount"></a>MapReduce实例——WordCount</h5><h6 id="任务目标"><a href="#任务目标" class="headerlink" title="任务目标"></a>任务目标</h6><p>1.准确理解Mapreduce的设计原理</p>
+<p>2.熟练掌握WordCount程序代码编写</p>
+<p>3.学会自己编写WordCount程序进行词频统计</p>
+<h6 id="相关知识"><a href="#相关知识" class="headerlink" title="相关知识"></a>相关知识</h6><p>MapReduce采用的是“分而治之”的思想，把对大规模数据集的操作，分发给一个主节点管理下的各个从节点共同完成，然后通过整合各个节点的中间结果，得到最终结果。简单来说，MapReduce就是”任务的分解与结果的汇总“。</p>
+<p>1.MapReduce的工作原理</p>
+<p>在分布式计算中，MapReduce框架负责处理了并行编程里分布式存储、工作调度，负载均衡、容错处理以及网络通信等复杂问题，现在我们把处理过程高度抽象为Map与Reduce两个部分来进行阐述，其中Map部分负责把任务分解成多个子任务，Reduce部分负责把分解后多个子任务的处理结果汇总起来，具体设计思路如下。</p>
+<p>（1）Map过程需要继承org.apache.hadoop.mapreduce包中Mapper类，并重写其map方法。通过在map方法中添加两句把key值和value值输出到控制台的代码，可以发现map方法中输入的value值存储的是文本文件中的一行（以回车符为行结束标记），而输入的key值存储的是该行的首字母相对于文本文件的首地址的偏移量。然后用StringTokenizer类将每一行拆分成为一个个的字段，把截取出需要的字段（本实验为买家id字段）设置为key，并将其作为map方法的结果输出。</p>
+<p>（2）Reduce过程需要继承org.apache.hadoop.mapreduce包中Reducer类，并重写其reduce方法。Map过程输出的&lt;key,value&gt;键值对先经过shuffle过程把key值相同的所有value值聚集起来形成values，此时values是对应key字段的计数值所组成的列表，然后将&lt;key,values&gt;输入到reduce方法中，reduce方法只要遍历values并求和，即可得到某个单词的总次数。</p>
+<p>在main()主函数中新建一个Job对象，由Job对象负责管理和运行MapReduce的一个计算任务，并通过Job的一些方法对任务的参数进行相关的设置。本实验是设置使用将继承Mapper的doMapper类完成Map过程中的处理和使用doReducer类完成Reduce过程中的处理。还设置了Map过程和Reduce过程的输出类型：key的类型为Text，value的类型为IntWritable。任务的输出和输入路径则由字符串指定，并由FileInputFormat和FileOutputFormat分别设定。完成相应任务的参数设定后，即可调用job.waitForCompletion()方法执行任务，其余的工作都交由MapReduce框架处理。</p>
+<p>2.MapReduce框架的作业运行流程</p>
+<p><a href="https://insight.ipieuvre.com/doc/exper/1e146ce6-91ad-11e9-beeb-00215ec892f4/img/01.png" target="_blank" rel="noopener"><img src="https://insight.ipieuvre.com/doc/exper/1e146ce6-91ad-11e9-beeb-00215ec892f4/img/01.png" alt="img"></a></p>
+<p>（1）ResourceManager：是YARN资源控制框架的中心模块，负责集群中所有资源的统一管理和分配。它接收来自NM(NodeManager)的汇报，建立AM，并将资源派送给AM(ApplicationMaster)。</p>
+<p>（2）NodeManager：简称NM，NodeManager是ResourceManager在每台机器上的代理，负责容器管理，并监控他们的资源使用情况（cpu、内存、磁盘及网络等），以及向ResourceManager提供这些资源使用报告。</p>
+<p>（3）ApplicationMaster：以下简称AM。YARN中每个应用都会启动一个AM，负责向RM申请资源，请求NM启动Container，并告诉Container做什么事情。</p>
+<p>（4）Container：资源容器。YARN中所有的应用都是在Container之上运行的。AM也是在Container上运行的，不过AM的Container是RM申请的。Container是YARN中资源的抽象，它封装了某个节点上一定量的资源（CPU和内存两类资源）。Container由ApplicationMaster向ResourceManager申请的，由ResouceManager中的资源调度器异步分配给ApplicationMaster。Container的运行是由ApplicationMaster向资源所在的NodeManager发起的，Container运行时需提供内部执行的任务命令（可以是任何命令，比如java、Python、C++进程启动命令均可）以及该命令执行所需的环境变量和外部资源（比如词典文件、可执行文件、jar包等）。</p>
+<p>另外，一个应用程序所需的Container分为两大类，如下：</p>
+<p>①运行ApplicationMaster的Container：这是由ResourceManager（向内部的资源调度器）申请和启动的，用户提交应用程序时，可指定唯一的ApplicationMaster所需的资源。</p>
+<p>②运行各类任务的Container：这是由ApplicationMaster向ResourceManager申请的，并为了ApplicationMaster与NodeManager通信以启动的。</p>
+<p>以上两类Container可能在任意节点上，它们的位置通常而言是随机的，即ApplicationMaster可能与它管理的任务运行在一个节点上。</p>
+<h6 id="任务内容"><a href="#任务内容" class="headerlink" title="任务内容"></a>任务内容</h6><p>现有某电商网站用户对商品的收藏数据，记录了用户收藏的商品id以及收藏日期，名为buyer_favorite1</p>
+<h6 id="任务步骤"><a href="#任务步骤" class="headerlink" title="任务步骤"></a>任务步骤</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#step1: 启动Hadoop</span><br><span class="line"></span><br><span class="line">#step2: 创建目录，下载数据文件</span><br><span class="line"></span><br><span class="line">#step3: 将linux本地&#x2F;data&#x2F;mapreduce1&#x2F;buyer_favorite1，上传到HDFS上的&#x2F;mymapreduce1&#x2F;in目录下</span><br><span class="line">hadoop fs -mkdir -p &#x2F;mymapreduce1&#x2F;in  </span><br><span class="line">hadoop fs -put &#x2F;data&#x2F;mapreduce1&#x2F;buyer_favorite1 &#x2F;mymapreduce1&#x2F;in  </span><br><span class="line"></span><br><span class="line">#step4: 打开Eclipse，新建Java Project项目,并将项目名设置为mapreduce1;在项目名mapreduce1下，新建package包,并将包命名为mapreduce;在创建的包mapreduce下，新建类,并将类命名为WordCount.</span><br><span class="line"></span><br><span class="line">#step5: 添加项目所需依赖的jar包,右键单击项目名，新建一个目录hadoop2lib，用于存放项目所需的jar包。</span><br><span class="line"></span><br><span class="line">#step6: 编写Java代码</span><br><span class="line"></span><br><span class="line">#step7: 在WordCount类文件中，单击右键&#x3D;&gt;Run As&#x3D;&gt;Run on Hadoop选项，将MapReduce任务提交到Hadoop中</span><br><span class="line"></span><br><span class="line">#step8: 待执行完毕后，打开终端或使用hadoop eclipse插件，查看hdfs上，程序输出的实验结果</span><br><span class="line">hadoop fs -ls &#x2F;mymapreduce1&#x2F;out  </span><br><span class="line">hadoop fs -cat &#x2F;mymapreduce1&#x2F;out&#x2F;part-r-00000</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://insight.ipieuvre.com/doc/exper/1e146ce6-91ad-11e9-beeb-00215ec892f4/img/12.png" alt="img"></p>
+<p>完整代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> mapreduce;  </span><br><span class="line"><span class="keyword">import</span> java.io.IOException;  </span><br><span class="line"><span class="keyword">import</span> java.util.StringTokenizer;  </span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.Path;  </span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.IntWritable;  </span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.Text;  </span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.Job;  </span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.Mapper;  </span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.Reducer;  </span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.lib.input.FileInputFormat;  </span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WordCount</span> </span>&#123;  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException, ClassNotFoundException, InterruptedException </span>&#123;  </span><br><span class="line">        Job job = Job.getInstance();  </span><br><span class="line">        job.setJobName(<span class="string">"WordCount"</span>);  </span><br><span class="line">        job.setJarByClass(WordCount<span class="class">.<span class="keyword">class</span>)</span>;  </span><br><span class="line">        job.setMapperClass(doMapper<span class="class">.<span class="keyword">class</span>)</span>;  </span><br><span class="line">        job.setReducerClass(doReducer<span class="class">.<span class="keyword">class</span>)</span>;  </span><br><span class="line">        job.setOutputKeyClass(Text<span class="class">.<span class="keyword">class</span>)</span>;  </span><br><span class="line">        job.setOutputValueClass(IntWritable<span class="class">.<span class="keyword">class</span>)</span>;  </span><br><span class="line">        Path in = <span class="keyword">new</span> Path(<span class="string">"hdfs://localhost:9000/mymapreduce1/in/buyer_favorite1"</span>);  </span><br><span class="line">        Path out = <span class="keyword">new</span> Path(<span class="string">"hdfs://localhost:9000/mymapreduce1/out"</span>);  </span><br><span class="line">        FileInputFormat.addInputPath(job, in);  </span><br><span class="line">        FileOutputFormat.setOutputPath(job, out);  </span><br><span class="line">        System.exit(job.waitForCompletion(<span class="keyword">true</span>) ? <span class="number">0</span> : <span class="number">1</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">doMapper</span> <span class="keyword">extends</span> <span class="title">Mapper</span>&lt;<span class="title">Object</span>, <span class="title">Text</span>, <span class="title">Text</span>, <span class="title">IntWritable</span>&gt;</span>&#123;  </span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> IntWritable one = <span class="keyword">new</span> IntWritable(<span class="number">1</span>);  </span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">static</span> Text word = <span class="keyword">new</span> Text();  </span><br><span class="line">        <span class="meta">@Override</span>  </span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">map</span><span class="params">(Object key, Text value, Context context)</span>  </span></span><br><span class="line"><span class="function">                    <span class="keyword">throws</span> IOException, InterruptedException </span>&#123;  </span><br><span class="line">            StringTokenizer tokenizer = <span class="keyword">new</span> StringTokenizer(value.toString(), <span class="string">"\t"</span>);  </span><br><span class="line">                word.set(tokenizer.nextToken());  </span><br><span class="line">                context.write(word, one);  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">doReducer</span> <span class="keyword">extends</span> <span class="title">Reducer</span>&lt;<span class="title">Text</span>, <span class="title">IntWritable</span>, <span class="title">Text</span>, <span class="title">IntWritable</span>&gt;</span>&#123;  </span><br><span class="line">        <span class="keyword">private</span> IntWritable result = <span class="keyword">new</span> IntWritable();  </span><br><span class="line">        <span class="meta">@Override</span>  </span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">reduce</span><span class="params">(Text key, Iterable&lt;IntWritable&gt; values, Context context)</span>  </span></span><br><span class="line"><span class="function">        <span class="keyword">throws</span> IOException, InterruptedException </span>&#123;  </span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;  </span><br><span class="line">        <span class="keyword">for</span> (IntWritable value : values) &#123;  </span><br><span class="line">        sum += value.get();  </span><br><span class="line">        &#125;  </span><br><span class="line">        result.set(sum);  </span><br><span class="line">        context.write(key, result);  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="MapReduce实例——WordCount-1"><a href="#MapReduce实例——WordCount-1" class="headerlink" title="MapReduce实例——WordCount"></a>MapReduce实例——WordCount</h5><h5 id="MapReduce实例——WordCount-2"><a href="#MapReduce实例——WordCount-2" class="headerlink" title="MapReduce实例——WordCount"></a>MapReduce实例——WordCount</h5><h5 id="MapReduce实例——WordCount-3"><a href="#MapReduce实例——WordCount-3" class="headerlink" title="MapReduce实例——WordCount"></a>MapReduce实例——WordCount</h5><h5 id="MapReduce实例——WordCount-4"><a href="#MapReduce实例——WordCount-4" class="headerlink" title="MapReduce实例——WordCount"></a>MapReduce实例——WordCount</h5><h5 id="MapReduce实例——WordCount-5"><a href="#MapReduce实例——WordCount-5" class="headerlink" title="MapReduce实例——WordCount"></a>MapReduce实例——WordCount</h5><h5 id="MapReduce实例——WordCount-6"><a href="#MapReduce实例——WordCount-6" class="headerlink" title="MapReduce实例——WordCount"></a>MapReduce实例——WordCount</h5><h5 id="MapReduce实例——WordCount-7"><a href="#MapReduce实例——WordCount-7" class="headerlink" title="MapReduce实例——WordCount"></a>MapReduce实例——WordCount</h5><h5 id="MapReduce实例——WordCount-8"><a href="#MapReduce实例——WordCount-8" class="headerlink" title="MapReduce实例——WordCount"></a>MapReduce实例——WordCount</h5><h5 id="MapReduce实例——WordCount-9"><a href="#MapReduce实例——WordCount-9" class="headerlink" title="MapReduce实例——WordCount"></a>MapReduce实例——WordCount</h5><h5 id="MapReduce实例——WordCount-10"><a href="#MapReduce实例——WordCount-10" class="headerlink" title="MapReduce实例——WordCount"></a>MapReduce实例——WordCount</h5>
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF/">大数据技术</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/" rel="tag">Hadoop</a></li></ul>
+
+      
+            
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/03/26/BigData/Hadoopop%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hadoopop基础学习</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#MapReduce学习——习题"><span class="nav-number">1.</span> <span class="nav-text">MapReduce学习——习题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#MapReduce实例——WordCount"><span class="nav-number">2.</span> <span class="nav-text">MapReduce实例——WordCount</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#任务目标"><span class="nav-number">2.1.</span> <span class="nav-text">任务目标</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#相关知识"><span class="nav-number">2.2.</span> <span class="nav-text">相关知识</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#任务内容"><span class="nav-number">2.3.</span> <span class="nav-text">任务内容</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#任务步骤"><span class="nav-number">2.4.</span> <span class="nav-text">任务步骤</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#MapReduce实例——WordCount-1"><span class="nav-number">3.</span> <span class="nav-text">MapReduce实例——WordCount</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#MapReduce实例——WordCount-2"><span class="nav-number">4.</span> <span class="nav-text">MapReduce实例——WordCount</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#MapReduce实例——WordCount-3"><span class="nav-number">5.</span> <span class="nav-text">MapReduce实例——WordCount</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#MapReduce实例——WordCount-4"><span class="nav-number">6.</span> <span class="nav-text">MapReduce实例——WordCount</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#MapReduce实例——WordCount-5"><span class="nav-number">7.</span> <span class="nav-text">MapReduce实例——WordCount</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#MapReduce实例——WordCount-6"><span class="nav-number">8.</span> <span class="nav-text">MapReduce实例——WordCount</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#MapReduce实例——WordCount-7"><span class="nav-number">9.</span> <span class="nav-text">MapReduce实例——WordCount</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#MapReduce实例——WordCount-8"><span class="nav-number">10.</span> <span class="nav-text">MapReduce实例——WordCount</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#MapReduce实例——WordCount-9"><span class="nav-number">11.</span> <span class="nav-text">MapReduce实例——WordCount</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#MapReduce实例——WordCount-10"><span class="nav-number">12.</span> <span class="nav-text">MapReduce实例——WordCount</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2020 Shaw All Rights Reserved.
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+
+<script src="/js/my.js"></script>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/scripts.js"></script>
+
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

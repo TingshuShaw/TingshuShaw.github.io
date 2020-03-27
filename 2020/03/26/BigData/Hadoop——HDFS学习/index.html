@@ -17,24 +17,24 @@
   <!-- PACE Progress Bar START -->
 
   
-  <title>linux常用命令——系统介绍 | Shaw</title>
+  <title>hadoop——hdfs学习 | Shaw</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="keywords" content="Linux命令" />
+  <meta name="keywords" content="Hadoop" />
   
   
   
   
-  <meta name="description" content="简介开源软件应用领域学习方法与WIN的不同123456789Linux严格区分大小写Linux中所有内容跟以文件形式保存，包括硬件Linux不靠扩展名区分文件类型	压缩包:&quot;*.gz&quot; &quot;*.bz2&quot; &quot;*.tar.bz2&quot; &quot;*.tgz&quot;等	二进制软件包:&quot;.rpm&quot;	网页文件:&quot;*.h">
+  <meta name="description" content="HDFS理论讲解HDFS理论讲解分布式结构集群和分布式概念集群：指逻辑上处理同一任务的机器集合，可以属于同意机房，也可分属不同机房。 分布式：分布式文件系统把文件分布存储到多个计算机节点上，成千上万的计算机节点构成计算机集群。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux常用命令——系统介绍">
-<meta property="og:url" content="http://yoursite.com/2020/03/25/Linux/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E2%80%94%E2%80%94%E7%B3%BB%E7%BB%9F%E4%BB%8B%E7%BB%8D/index.html">
+<meta property="og:title" content="Hadoop——HDFS学习">
+<meta property="og:url" content="http://yoursite.com/2020/03/26/BigData/Hadoop%E2%80%94%E2%80%94HDFS%E5%AD%A6%E4%B9%A0/index.html">
 <meta property="og:site_name" content="Shaw">
-<meta property="og:description" content="简介开源软件应用领域学习方法与WIN的不同123456789Linux严格区分大小写Linux中所有内容跟以文件形式保存，包括硬件Linux不靠扩展名区分文件类型	压缩包:&quot;*.gz&quot; &quot;*.bz2&quot; &quot;*.tar.bz2&quot; &quot;*.tgz&quot;等	二进制软件包:&quot;.rpm&quot;	网页文件:&quot;*.h">
+<meta property="og:description" content="HDFS理论讲解HDFS理论讲解分布式结构集群和分布式概念集群：指逻辑上处理同一任务的机器集合，可以属于同意机房，也可分属不同机房。 分布式：分布式文件系统把文件分布存储到多个计算机节点上，成千上万的计算机节点构成计算机集群。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-03-25T04:26:16.000Z">
-<meta property="article:modified_time" content="2020-03-25T04:31:36.554Z">
-<meta property="article:tag" content="Linux命令">
+<meta property="article:published_time" content="2020-03-26T00:51:05.000Z">
+<meta property="article:modified_time" content="2020-03-26T01:09:03.815Z">
+<meta property="article:tag" content="Hadoop">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Shaw" type="application/atom+xml">
@@ -169,7 +169,7 @@ var themeMenus = {};
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-Linux/Linux常用命令——系统介绍" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-BigData/Hadoop——HDFS学习" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -177,7 +177,7 @@ var themeMenus = {};
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      Linux常用命令——系统介绍
+      Hadoop——HDFS学习
     </h1>
   
 
@@ -185,31 +185,32 @@ var themeMenus = {};
     
     <div class="article-meta">
       
-	Posted on <a href="/2020/03/25/Linux/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E2%80%94%E2%80%94%E7%B3%BB%E7%BB%9F%E4%BB%8B%E7%BB%8D/" class="article-date">
-	  <time datetime="2020-03-25T04:26:16.000Z" itemprop="datePublished">March 25, 2020</time>
+	Posted on <a href="/2020/03/26/BigData/Hadoop%E2%80%94%E2%80%94HDFS%E5%AD%A6%E4%B9%A0/" class="article-date">
+	  <time datetime="2020-03-26T00:51:05.000Z" itemprop="datePublished">March 26, 2020</time>
 	</a>
 
       
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h5><h5 id="开源软件"><a href="#开源软件" class="headerlink" title="开源软件"></a>开源软件</h5><h5 id="应用领域"><a href="#应用领域" class="headerlink" title="应用领域"></a>应用领域</h5><h5 id="学习方法"><a href="#学习方法" class="headerlink" title="学习方法"></a>学习方法</h5><h5 id="与WIN的不同"><a href="#与WIN的不同" class="headerlink" title="与WIN的不同"></a>与WIN的不同</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Linux严格区分大小写</span><br><span class="line">Linux中所有内容跟以文件形式保存，包括硬件</span><br><span class="line">Linux不靠扩展名区分文件类型</span><br><span class="line">	压缩包:&quot;*.gz&quot; &quot;*.bz2&quot; &quot;*.tar.bz2&quot; &quot;*.tgz&quot;等</span><br><span class="line">	二进制软件包:&quot;.rpm&quot;</span><br><span class="line">	网页文件:&quot;*.html&quot; &quot;*.php&quot;</span><br><span class="line">	脚本文件:&quot;*.sh&quot;</span><br><span class="line">	配置文件:&quot;*.conf&quot;</span><br><span class="line">Windows下的程序不能直接在Linux中安装和运行</span><br></pre></td></tr></table></figure>
+        <h3 id="HDFS理论讲解"><a href="#HDFS理论讲解" class="headerlink" title="HDFS理论讲解"></a>HDFS理论讲解</h3><h4 id="HDFS理论讲解-1"><a href="#HDFS理论讲解-1" class="headerlink" title="HDFS理论讲解"></a>HDFS理论讲解</h4><h5 id="分布式结构"><a href="#分布式结构" class="headerlink" title="分布式结构"></a>分布式结构</h5><h6 id="集群和分布式概念"><a href="#集群和分布式概念" class="headerlink" title="集群和分布式概念"></a>集群和分布式概念</h6><p>集群：指逻辑上处理同一任务的机器集合，可以属于同意机房，也可分属不同机房。</p>
+<p>分布式：分布式文件系统把文件分布存储到多个计算机节点上，成千上万的计算机节点构成计算机集群。</p>
+<a id="more"></a>
 
-
-
-<h5 id="字符界面的优势"><a href="#字符界面的优势" class="headerlink" title="字符界面的优势"></a>字符界面的优势</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.占用的系统资源更少</span><br><span class="line">2.减少了出错、被攻击的可能</span><br></pre></td></tr></table></figure>
-
-
+<p>计算机集群基本架构：</p>
+<p>。。。。。。。图。。。。。。。</p>
+<p><em>目前的分布式文件系统所采用的计算机集群，都是由普通硬件构成，大大降低了硬件上的开销</em></p>
+<h6 id="分布式文件系统的结构"><a href="#分布式文件系统的结构" class="headerlink" title="分布式文件系统的结构"></a>分布式文件系统的结构</h6><h5 id="HDFS架构和相关概念"><a href="#HDFS架构和相关概念" class="headerlink" title="HDFS架构和相关概念"></a>HDFS架构和相关概念</h5><h5 id="HDFS数据操作"><a href="#HDFS数据操作" class="headerlink" title="HDFS数据操作"></a>HDFS数据操作</h5><h4 id="HDFS数据处理原理"><a href="#HDFS数据处理原理" class="headerlink" title="HDFS数据处理原理"></a>HDFS数据处理原理</h4><h3 id="HDFS基本操作"><a href="#HDFS基本操作" class="headerlink" title="HDFS基本操作"></a>HDFS基本操作</h3><h4 id="HDFS目录文件"><a href="#HDFS目录文件" class="headerlink" title="HDFS目录文件"></a>HDFS目录文件</h4><h4 id="HDFS文件操作"><a href="#HDFS文件操作" class="headerlink" title="HDFS文件操作"></a>HDFS文件操作</h4><h4 id="HDFS查看文件信息"><a href="#HDFS查看文件信息" class="headerlink" title="HDFS查看文件信息"></a>HDFS查看文件信息</h4><h4 id="HDFS压缩与解压缩"><a href="#HDFS压缩与解压缩" class="headerlink" title="HDFS压缩与解压缩"></a>HDFS压缩与解压缩</h4><h3 id="HDFS数据读写过程"><a href="#HDFS数据读写过程" class="headerlink" title="HDFS数据读写过程"></a>HDFS数据读写过程</h3><h4 id="HDFS数据读写过程-1"><a href="#HDFS数据读写过程-1" class="headerlink" title="HDFS数据读写过程"></a>HDFS数据读写过程</h4>
       
     </div>
     <footer class="entry-meta entry-footer">
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+    <a class="article-category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF/">大数据技术</a>
 
       
   <span class="ico-tags"></span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E5%91%BD%E4%BB%A4/" rel="tag">Linux命令</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/" rel="tag">Hadoop</a></li></ul>
 
       
             
@@ -244,19 +245,19 @@ var themeMenus = {};
     
 <nav id="article-nav">
   
-    <a href="/2020/03/26/BigData/Hadoop%E2%80%94%E2%80%94HDFS%E5%AD%A6%E4%B9%A0/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/03/26/BigData/Hadoopop%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          Hadoop——HDFS学习
+          Hadoopop基础学习
         
       </div>
     </a>
   
   
-    <a href="/2020/03/25/Linux/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E2%80%94%E2%80%94%E7%94%A8%E6%88%B7%E6%93%8D%E4%BD%9C/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/03/25/Linux/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E2%80%94%E2%80%94%E7%B3%BB%E7%BB%9F%E4%BB%8B%E7%BB%8D/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Linux常用命令——用户操作</div>
+      <div class="article-nav-title">Linux常用命令——系统介绍</div>
     </a>
   
 </nav>
@@ -270,7 +271,7 @@ var themeMenus = {};
     <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
     <strong class="toc-title">Contents</strong>
     
-      <ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#开源软件"><span class="nav-number">2.</span> <span class="nav-text">开源软件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#应用领域"><span class="nav-number">3.</span> <span class="nav-text">应用领域</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#学习方法"><span class="nav-number">4.</span> <span class="nav-text">学习方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#与WIN的不同"><span class="nav-number">5.</span> <span class="nav-text">与WIN的不同</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#字符界面的优势"><span class="nav-number">6.</span> <span class="nav-text">字符界面的优势</span></a></li></ol>
+      <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#HDFS理论讲解"><span class="nav-number">1.</span> <span class="nav-text">HDFS理论讲解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HDFS理论讲解-1"><span class="nav-number">1.1.</span> <span class="nav-text">HDFS理论讲解</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#分布式结构"><span class="nav-number">1.1.1.</span> <span class="nav-text">分布式结构</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#集群和分布式概念"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">集群和分布式概念</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#分布式文件系统的结构"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">分布式文件系统的结构</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HDFS架构和相关概念"><span class="nav-number">1.1.2.</span> <span class="nav-text">HDFS架构和相关概念</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HDFS数据操作"><span class="nav-number">1.1.3.</span> <span class="nav-text">HDFS数据操作</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HDFS数据处理原理"><span class="nav-number">1.2.</span> <span class="nav-text">HDFS数据处理原理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HDFS基本操作"><span class="nav-number">2.</span> <span class="nav-text">HDFS基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HDFS目录文件"><span class="nav-number">2.1.</span> <span class="nav-text">HDFS目录文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HDFS文件操作"><span class="nav-number">2.2.</span> <span class="nav-text">HDFS文件操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HDFS查看文件信息"><span class="nav-number">2.3.</span> <span class="nav-text">HDFS查看文件信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HDFS压缩与解压缩"><span class="nav-number">2.4.</span> <span class="nav-text">HDFS压缩与解压缩</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HDFS数据读写过程"><span class="nav-number">3.</span> <span class="nav-text">HDFS数据读写过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HDFS数据读写过程-1"><span class="nav-number">3.1.</span> <span class="nav-text">HDFS数据读写过程</span></a></li></ol></li></ol>
     
     </div>
   </aside>
