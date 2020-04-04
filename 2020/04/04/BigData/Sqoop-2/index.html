@@ -30,11 +30,11 @@
 <meta property="og:site_name" content="Shaw">
 <meta property="og:description" content="把HDFS中数据导到MySQL中 123456789xxxxxx:~$ \&gt; sqoop export \&gt; -connect jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;mysqoop \&gt; -username root \&gt; -password strongs \&gt; -table hdsftomysql \&gt; -export-dir hdfs:&#x2F;">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="f:%5CMy_Study%5CBlog_Shaw%5CmyBlog%5Csource_posts%5CBigData%5CSqoop-2%5C2-1.PNG">
+<meta property="og:image" content="http://yoursite.com/2020/04/04/BigData/Sqoop-2/2-1.PNG">
 <meta property="article:published_time" content="2020-04-04T08:31:14.000Z">
-<meta property="article:modified_time" content="2020-04-04T08:35:05.050Z">
+<meta property="article:modified_time" content="2020-04-04T08:41:27.069Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="f:%5CMy_Study%5CBlog_Shaw%5CmyBlog%5Csource_posts%5CBigData%5CSqoop-2%5C2-1.PNG">
+<meta name="twitter:image" content="http://yoursite.com/2020/04/04/BigData/Sqoop-2/2-1.PNG">
   
     <link rel="alternate" href="/atom.xml" title="Shaw" type="application/atom+xml">
   
@@ -196,7 +196,8 @@ var themeMenus = {};
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">xxxxxx:~$ \</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> sqoop <span class="built_in">export</span> \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -connect jdbc:mysql://localhost:3306/mysqoop \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -username root \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -password strongs \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -table hdsftomysql \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -<span class="built_in">export</span>-dir hdfs://localhost:9000/mysqoop/1/mystu/part-m-00000</span></span><br><span class="line">ps:MySQL中必须提前创建表结构</span><br><span class="line">关于其他数据源到处到MySQL中，暂无直接接口，可以依赖HDFS到MySQL的过程</span><br></pre></td></tr></table></figure>
 
 <p>Sqoop job</p>
-<p><img src="F:%5CMy_Study%5CBlog_Shaw%5CmyBlog%5Csource_posts%5CBigData%5CSqoop-2%5C2-1.PNG" alt="2-1"></p>
+<img src="2-1.PNG">
+
 <p>创建sqoop job</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sqoop job \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -create mysqoopjob1 \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -- import \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -connect jdbc:mysql://localhost:3306/mysqoop \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -username root \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -password strongs \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -table student \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -hbase-create-table \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -hbase-table mystu2 \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -column-famliy mycf \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -hbase-row-key id</span></span><br></pre></td></tr></table></figure>
 
