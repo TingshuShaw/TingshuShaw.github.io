@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    
+<script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>深度学习——特征工程 | Shaw</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Deep Learning" />
+  
+  
+  
+  
+  <meta name="description" content="特征工程定义特征存在意义：数据和特征决定了机器学习的上线，而模型和算法只是逼近这个上限而已 深度学习也需要用到特征，需要对输入的特征进行组合变换等处理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深度学习——特征工程">
+<meta property="og:url" content="http://yoursite.com/2020/04/06/DEEP-LEARNING/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Shaw">
+<meta property="og:description" content="特征工程定义特征存在意义：数据和特征决定了机器学习的上线，而模型和算法只是逼近这个上限而已 深度学习也需要用到特征，需要对输入的特征进行组合变换等处理">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/06/Gs8lA1.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/06/Gs81tx.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/06/Gs8M7R.png">
+<meta property="article:published_time" content="2020-04-06T02:03:01.000Z">
+<meta property="article:modified_time" content="2020-04-06T03:33:31.567Z">
+<meta property="article:tag" content="Deep Learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/04/06/Gs8lA1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Shaw" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" >
+  <link rel="stylesheet" href="/css/hiero.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+  
+
+  <!-- Custom CSS -->
+  
+<link rel="stylesheet" href="/css/my.css">
+
+  <!-- Google Adsense -->
+  
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+  themeMenus["/categories"] = "Categories"; 
+
+  themeMenus["/tags"] = "Tags"; 
+
+  themeMenus["/about"] = "About"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="http://h.hiphotos.baidu.com/zhidao/wh%3D450%2C600/sign=0b995d383f292df59796a41189017056/d8f9d72a6059252d4b5d8513319b033b5bb5b95b.jpg">
+              </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt="" src="">
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=128299422,1502359480&fm=26&gp=0.jpg".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-DEEP-LEARNING/深度学习——特征工程" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      深度学习——特征工程
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2020/04/06/DEEP-LEARNING/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/" class="article-date">
+	  <time datetime="2020-04-06T02:03:01.000Z" itemprop="datePublished">April 6, 2020</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h6 id="特征工程定义"><a href="#特征工程定义" class="headerlink" title="特征工程定义"></a>特征工程定义</h6><p>特征存在意义：数据和特征决定了机器学习的上线，而模型和算法只是逼近这个上限而已</p>
+<p>深度学习也需要用到特征，需要对输入的特征进行组合变换等处理</p>
+<a id="more"></a>
+
+<h6 id="自动分词"><a href="#自动分词" class="headerlink" title="自动分词"></a>自动分词</h6><p>自动分词就是将用自然语言书写的文章、句段经计算机处理后，以词为单位给以输出，为后续加工处理提供 先决条件</p>
+<h6 id="词根提取与词形标注"><a href="#词根提取与词形标注" class="headerlink" title="词根提取与词形标注"></a>词根提取与词形标注</h6><p>词根提取：抽取词的词干或词根形式（不一定表达完整的语义）</p>
+<p>词形还原：把词汇还原成一般形式（能表达完整语义）</p>
+<p>词形规范化的两种重要方式</p>
+<h6 id="词性标注"><a href="#词性标注" class="headerlink" title="词性标注"></a>词性标注</h6><p>词性标注：为分词结果中的每一个单词标注一个正确的词性的程序</p>
+<p>词性标注规范：</p>
+<p>中文领域中尚无统一的标注标准，较为主流的是<em>北大的词性标注集</em>和<em>宾州词性标注集</em>。</p>
+<h6 id="句法分析"><a href="#句法分析" class="headerlink" title="句法分析"></a>句法分析</h6><p>句法分析：其基本任务时确定句子的句法结构或者句子中词汇之间的依存关系</p>
+<h6 id="NLTK-http-www-nltk-org"><a href="#NLTK-http-www-nltk-org" class="headerlink" title="NLTK: http://www.nltk.org/"></a>NLTK: <a href="http://www.nltk.org/" target="_blank" rel="noopener">http://www.nltk.org/</a></h6><p>NLTK：在NLP领域中最常用的一个python库</p>
+<p>提供的功能：</p>
+<ul>
+<li>Tokenization</li>
+<li>Stemming</li>
+<li>Tagging</li>
+<li>Parsing</li>
+</ul>
+<h6 id="Text-Processing-API-http-text-processing-com"><a href="#Text-Processing-API-http-text-processing-com" class="headerlink" title="Text Processing API  : http://text-processing.com/"></a>Text Processing API  : <a href="http://text-processing.com/" target="_blank" rel="noopener">http://text-processing.com/</a></h6><p>支持的功能:</p>
+<ul>
+<li>Stemming &amp; Lemmatization</li>
+<li>Sentiment Analysis</li>
+<li>Tagging and Chunk Extraction</li>
+<li>Phrase Extraction &amp; Named Entity Recognition</li>
+</ul>
+<h6 id="基于curl访问-Text-Processing-API"><a href="#基于curl访问-Text-Processing-API" class="headerlink" title="基于curl访问 Text Processing API"></a>基于curl访问 Text Processing API</h6><p>下载：</p>
+<p><a href="https://curl.haxx.se/download.html" target="_blank" rel="noopener">curl下载链接</a></p>
+<p><a href="https://curl.haxx.se/download.html#Win64" target="_blank" rel="noopener">curl-wim64</a></p>
+<p>安装：只需要将文件解压到常用目录中即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#进入bin目录</span><br><span class="line">F:\My_Soft\curl-7.69.1-win64-mingw\bin</span><br><span class="line">#执行curl.exe</span><br><span class="line">#打开cmd,检查是否安装成功</span><br><span class="line">curl --version</span><br></pre></td></tr></table></figure>
+
+<img src="https://s1.ax1x.com/2020/04/06/Gs8lA1.png" alt="1" border="0">
+<img src="https://s1.ax1x.com/2020/04/06/Gs81tx.png" alt="2" border="0">
+
+<p>通过curl访问 Text Processing API：</p>
+<ol>
+<li><p>新建test.txt：内容是直接copy百度百科对美剧《犯罪心理》中Doctor.Reid该虚拟任务的介绍</p>
+</li>
+<li><p>输入相关命令 :进行情感分析</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -d &quot;text&#x3D;test&quot; http:&#x2F;&#x2F;test-processing.com&#x2F;api&#x2F;sentiment</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>返回结果</p>
+<img src="https://s1.ax1x.com/2020/04/06/Gs8M7R.png" alt="3" border="0">
+</li>
+<li><p>结果解读：json文件包括情感标签和概率</p>
+<ul>
+<li>neg: 负向情感的概率</li>
+<li>neutral：中立情感概率</li>
+<li>pos: 正向情感的概率</li>
+<li>label：最后对该文本进行标注：选取概率最大的neutral</li>
+</ul>
+</li>
+</ol>
+<h6 id="TextBlob工具-：功能更加强大"><a href="#TextBlob工具-：功能更加强大" class="headerlink" title="TextBlob工具 ：功能更加强大"></a>TextBlob工具 ：功能更加强大</h6><h6 id="中文处理工具：jieba"><a href="#中文处理工具：jieba" class="headerlink" title="中文处理工具：jieba"></a>中文处理工具：jieba</h6><p>安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install jieba</span><br></pre></td></tr></table></figure>
+
+<p>功能：</p>
+<ul>
+<li>分词 （并行分词、支持自定义词典）</li>
+<li>词性标注</li>
+<li>关键词提取</li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Deep-Learning/">Deep Learning</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/04/05/BigData/Flume%E5%88%86%E5%B8%83%E5%BC%8F%E6%97%A5%E5%BF%97%E6%A1%86%E6%9E%B6/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Flume分布式日志框架</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#特征工程定义"><span class="nav-number">1.</span> <span class="nav-text">特征工程定义</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#自动分词"><span class="nav-number">2.</span> <span class="nav-text">自动分词</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#词根提取与词形标注"><span class="nav-number">3.</span> <span class="nav-text">词根提取与词形标注</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#词性标注"><span class="nav-number">4.</span> <span class="nav-text">词性标注</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#句法分析"><span class="nav-number">5.</span> <span class="nav-text">句法分析</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#NLTK-http-www-nltk-org"><span class="nav-number">6.</span> <span class="nav-text">NLTK: http:&#x2F;&#x2F;www.nltk.org&#x2F;</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Text-Processing-API-http-text-processing-com"><span class="nav-number">7.</span> <span class="nav-text">Text Processing API  : http:&#x2F;&#x2F;text-processing.com&#x2F;</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#基于curl访问-Text-Processing-API"><span class="nav-number">8.</span> <span class="nav-text">基于curl访问 Text Processing API</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#TextBlob工具-：功能更加强大"><span class="nav-number">9.</span> <span class="nav-text">TextBlob工具 ：功能更加强大</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#中文处理工具：jieba"><span class="nav-number">10.</span> <span class="nav-text">中文处理工具：jieba</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2020 Shaw All Rights Reserved.
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+
+<script src="/js/my.js"></script>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/scripts.js"></script>
+
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

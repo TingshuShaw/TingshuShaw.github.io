@@ -164,6 +164,78 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-DEEP-LEARNING/深度学习——特征工程"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2020/04/06/DEEP-LEARNING/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/">深度学习——特征工程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2020/04/06/DEEP-LEARNING/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/" class="article-date">
+	  <time datetime="2020-04-06T02:03:01.000Z" itemprop="datePublished">April 6, 2020</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+
+          
+            <div class="entry-summary" style="margin-left:0;">
+            特征工程定义特征存在意义：数据和特征决定了机器学习的上线，而模型和算法只是逼近这个上限而已
+深度学习也需要用到特征，需要对输入的特征进行组合变换等处理
+
+
+自动分词自动分词就是将用自然语言书写的文章、句段经计算机处理后，以词为单位给以输出，为后续加工处理提供 先决条件
+词根提取与词形标注词根提取：抽取词的词干或词根形式（不一定表达完整的语义）
+词形还原：把词汇还原成一般形式（能表达完整语义）
+词形规范化的两种重要方式
+词性标注词性标注：为分词结果中的每一个单词标注一个正确的词性的程序
+词性标注规范：
+中文领域中尚无统一的标注标准，较为主流的是北大的词性标注集和宾州词性标注集。
+句法分析句法分析：其基本任务时确定句子的句法结构或者句子中词汇之间的依存关系
+NLTK: http://www...
+          
+
+        
+          <p class="article-more-link">
+            <a href="/2020/04/06/DEEP-LEARNING/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/#more">Continue Reading →</a>
+          </p>
+        </div>
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Deep-Learning/">Deep Learning</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-BigData/Flume分布式日志框架"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -766,79 +838,11 @@ MapReduce学习——习题1.对MapReduce的体系结构，以下说法正确的
     
 
   
-    <article id="post-Linux/Linux常用命令——文件搜索命令"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2020/03/24/Linux/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E2%80%94%E2%80%94%E6%96%87%E4%BB%B6%E6%90%9C%E7%B4%A2%E5%91%BD%E4%BB%A4/">Linux——文件搜索命令</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2020/03/24/Linux/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E2%80%94%E2%80%94%E6%96%87%E4%BB%B6%E6%90%9C%E7%B4%A2%E5%91%BD%E4%BB%A4/" class="article-date">
-	  <time datetime="2020-03-24T14:14:18.000Z" itemprop="datePublished">March 24, 2020</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-
-          
-            <div class="entry-summary" style="margin-left:0;">
-            文件搜索命令(比windows强大)文件搜索命令locate （搜索速度较快，但只能按照文件名搜索）locate命令格式
-123456# 在后台数据库中按照文件名搜索，搜 索速度更快locate 文件名#locate命令搜索的后台数据库(Linux版本不同数据库的名称可能不同)&#x2F;var&#x2F;lib&#x2F;mlocate#若要查询当天新建数据库，需要强制更新数据库updatedb
-
-
-
-
-
-/etc/updatedb.conf配置文件
-12345678#开启搜索限制，YES表示以下规则全都生效PRUNE_BIND_MOUNTS &#x3D; &quot;yes&quot;#搜索时，不搜索文件系统PRUNEFS&#x3D;#搜索时，不搜索文件类型PRUNENAMES&#...
-          
-
-        
-          <p class="article-more-link">
-            <a href="/2020/03/24/Linux/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E2%80%94%E2%80%94%E6%96%87%E4%BB%B6%E6%90%9C%E7%B4%A2%E5%91%BD%E4%BB%A4/#more">Continue Reading →</a>
-          </p>
-        </div>
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Linux/">Linux</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E5%91%BD%E4%BB%A4/" rel="tag">Linux命令</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next</a>
   </nav>
 
 </section>
@@ -964,6 +968,18 @@ MapReduce学习——习题1.对MapReduce的体系结构，以下说法正确的
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2020/04/06/DEEP-LEARNING/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E2%80%94%E2%80%94%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/">深度学习——特征工程</a></h6>
+              <span>April 6, 2020</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2020/04/05/BigData/Flume%E5%88%86%E5%B8%83%E5%BC%8F%E6%97%A5%E5%BF%97%E6%A1%86%E6%9E%B6/">Flume分布式日志框架</a></h6>
               <span>April 5, 2020</span>
             </div>
@@ -1018,18 +1034,6 @@ MapReduce学习——习题1.对MapReduce的体系结构，以下说法正确的
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/03/26/BigData/Hadoop%E2%80%94%E2%80%94HDFS%E5%AD%A6%E4%B9%A0/">Hadoop——HDFS学习</a></h6>
-              <span>March 26, 2020</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1039,7 +1043,7 @@ MapReduce学习——习题1.对MapReduce的体系结构，以下说法正确的
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/BOOKS/">BOOKS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Daily-Sentence/">Daily Sentence</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP-%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/">NLP(自然语言处理)</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF/">大数据技术</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/BOOKS/">BOOKS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Daily-Sentence/">Daily Sentence</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Deep-Learning/">Deep Learning</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP-%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/">NLP(自然语言处理)</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF/">大数据技术</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -1049,7 +1053,7 @@ MapReduce学习——习题1.对MapReduce的体系结构，以下说法正确的
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Daily-Sentence/" rel="tag">Daily Sentence</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop/" rel="tag">Hadoop</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux%E5%91%BD%E4%BB%A4/" rel="tag">Linux命令</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyBooks/" rel="tag">MyBooks</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL-Server/" rel="tag">MySQL Server</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP-%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/" rel="tag">NLP(自然语言处理)</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Daily-Sentence/" rel="tag">Daily Sentence</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop/" rel="tag">Hadoop</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux%E5%91%BD%E4%BB%A4/" rel="tag">Linux命令</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyBooks/" rel="tag">MyBooks</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL-Server/" rel="tag">MySQL Server</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP-%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/" rel="tag">NLP(自然语言处理)</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -1059,7 +1063,7 @@ MapReduce学习——习题1.对MapReduce的体系结构，以下说法正确的
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Daily-Sentence/" style="font-size: 15px;">Daily Sentence</a> <a href="/tags/Hadoop/" style="font-size: 15px;">Hadoop</a> <a href="/tags/Linux%E5%91%BD%E4%BB%A4/" style="font-size: 20px;">Linux命令</a> <a href="/tags/MyBooks/" style="font-size: 10px;">MyBooks</a> <a href="/tags/MySQL-Server/" style="font-size: 10px;">MySQL Server</a> <a href="/tags/NLP-%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/" style="font-size: 15px;">NLP(自然语言处理)</a> <a href="/tags/python/" style="font-size: 10px;">python</a>
+      <a href="/tags/Daily-Sentence/" style="font-size: 15px;">Daily Sentence</a> <a href="/tags/Deep-Learning/" style="font-size: 10px;">Deep Learning</a> <a href="/tags/Hadoop/" style="font-size: 15px;">Hadoop</a> <a href="/tags/Linux%E5%91%BD%E4%BB%A4/" style="font-size: 20px;">Linux命令</a> <a href="/tags/MyBooks/" style="font-size: 10px;">MyBooks</a> <a href="/tags/MySQL-Server/" style="font-size: 10px;">MySQL Server</a> <a href="/tags/NLP-%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/" style="font-size: 15px;">NLP(自然语言处理)</a> <a href="/tags/python/" style="font-size: 10px;">python</a>
     </div>
   </div>
 
@@ -1069,7 +1073,7 @@ MapReduce学习——习题1.对MapReduce的体系结构，以下说法正确的
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a><span class="archive-list-count">17</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a><span class="archive-list-count">17</span></li></ul>
     </div>
   </div>
 
