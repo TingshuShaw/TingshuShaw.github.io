@@ -20,17 +20,17 @@
   <title>特征工程——向量空间模型及文本相似度计算 | Shaw</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="keywords" content="DEEP LEARNING" />
+  <meta name="keywords" content="Deep Learning" />
   
   
   
   
-  <meta name="description" content="文档的向量化表示：BOW假设和VSM模型文本向量化的目的：便于计算文档时间的相似度 BOW(bag-of-words model):假设可以忽略文档内的单词顺序和语法、句法等要素，将其仅仅看作是若干个词汇的集合。  VSM(Vector space model)：即向量空间模型。其是指在BOW假设下，将每个文档表示成同一向量空间的向量。  BOW-VSM栗子   停用词（stop words）停用">
+  <meta name="description" content="文档的向量化表示：BOW假设和VSM模型文本向量化的目的：便于计算文档时间的相似度">
 <meta property="og:type" content="article">
 <meta property="og:title" content="特征工程——向量空间模型及文本相似度计算">
 <meta property="og:url" content="http://yoursite.com/2020/04/07/DEEP-LEARNING/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B%E2%80%94%E2%80%94%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E6%A8%A1%E5%9E%8B%E5%8F%8A%E6%96%87%E6%9C%AC%E7%9B%B8%E4%BC%BC%E5%BA%A6%E8%AE%A1%E7%AE%97/index.html">
 <meta property="og:site_name" content="Shaw">
-<meta property="og:description" content="文档的向量化表示：BOW假设和VSM模型文本向量化的目的：便于计算文档时间的相似度 BOW(bag-of-words model):假设可以忽略文档内的单词顺序和语法、句法等要素，将其仅仅看作是若干个词汇的集合。  VSM(Vector space model)：即向量空间模型。其是指在BOW假设下，将每个文档表示成同一向量空间的向量。  BOW-VSM栗子   停用词（stop words）停用">
+<meta property="og:description" content="文档的向量化表示：BOW假设和VSM模型文本向量化的目的：便于计算文档时间的相似度">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1214076117,3123937459&fm=15&gp=0.jpg">
 <meta property="og:image" content="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1564839253,1332293475&fm=15&gp=0.jpg">
@@ -41,9 +41,9 @@
 <meta property="og:image" content="https://s1.ax1x.com/2020/04/07/GcjJgS.png">
 <meta property="og:image" content="https://s1.ax1x.com/2020/04/07/Gcj6vF.png">
 <meta property="og:image" content="https://s1.ax1x.com/2020/04/07/GcjRb9.png">
-<meta property="article:published_time" content="2020-04-07T05:52:32.000Z">
-<meta property="article:modified_time" content="2020-04-07T06:28:20.964Z">
-<meta property="article:tag" content="DEEP LEARNING">
+<meta property="article:published_time" content="2020-04-07T06:52:32.000Z">
+<meta property="article:modified_time" content="2020-04-07T06:37:41.011Z">
+<meta property="article:tag" content="Deep Learning">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1214076117,3123937459&fm=15&gp=0.jpg">
   
@@ -196,7 +196,7 @@ var themeMenus = {};
     <div class="article-meta">
       
 	Posted on <a href="/2020/04/07/DEEP-LEARNING/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B%E2%80%94%E2%80%94%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E6%A8%A1%E5%9E%8B%E5%8F%8A%E6%96%87%E6%9C%AC%E7%9B%B8%E4%BC%BC%E5%BA%A6%E8%AE%A1%E7%AE%97/" class="article-date">
-	  <time datetime="2020-04-07T05:52:32.000Z" itemprop="datePublished">April 7, 2020</time>
+	  <time datetime="2020-04-07T06:52:32.000Z" itemprop="datePublished">April 7, 2020</time>
 	</a>
 
       
@@ -204,6 +204,8 @@ var themeMenus = {};
     <div class="article-entry" itemprop="articleBody">
       
         <h6 id="文档的向量化表示：BOW假设和VSM模型"><a href="#文档的向量化表示：BOW假设和VSM模型" class="headerlink" title="文档的向量化表示：BOW假设和VSM模型"></a>文档的向量化表示：BOW假设和VSM模型</h6><p>文本向量化的目的：便于计算文档时间的相似度</p>
+<a id="more"></a>
+
 <p><strong>BOW(bag-of-words model)</strong>:假设可以忽略文档内的单词顺序和语法、句法等要素，将其仅仅看作是若干个词汇的集合。</p>
 <p><img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1214076117,3123937459&fm=15&gp=0.jpg" alt></p>
 <p><strong>VSM(Vector space model)</strong>：即向量空间模型。其是指在BOW假设下，将每个文档表示成同一向量空间的向量。</p>
@@ -234,11 +236,11 @@ var themeMenus = {};
     <footer class="entry-meta entry-footer">
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/DEEP-LEARNING/">DEEP LEARNING</a>
+    <a class="article-category-link" href="/categories/Deep-Learning/">Deep Learning</a>
 
       
   <span class="ico-tags"></span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DEEP-LEARNING/" rel="tag">DEEP LEARNING</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li></ul>
 
       
             
