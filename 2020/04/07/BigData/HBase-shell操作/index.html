@@ -20,16 +20,21 @@
   <title>hbase shell操作 | Shaw</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
+  <meta name="keywords" content="HBase" />
   
   
   
-  <meta property="og:type" content="article">
+  
+  <meta name="description" content="进入HBase命令行HBase提供了一个shell的终端给用户进行交互，可以与MySQL关联学习">
+<meta property="og:type" content="article">
 <meta property="og:title" content="HBase shell操作">
 <meta property="og:url" content="http://yoursite.com/2020/04/07/BigData/HBase-shell%E6%93%8D%E4%BD%9C/index.html">
 <meta property="og:site_name" content="Shaw">
+<meta property="og:description" content="进入HBase命令行HBase提供了一个shell的终端给用户进行交互，可以与MySQL关联学习">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-04-07T04:35:32.000Z">
-<meta property="article:modified_time" content="2020-04-07T04:35:32.442Z">
+<meta property="article:published_time" content="2020-04-07T14:35:32.000Z">
+<meta property="article:modified_time" content="2020-04-08T01:27:43.998Z">
+<meta property="article:tag" content="HBase">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Shaw" type="application/atom+xml">
@@ -181,19 +186,115 @@ var themeMenus = {};
     <div class="article-meta">
       
 	Posted on <a href="/2020/04/07/BigData/HBase-shell%E6%93%8D%E4%BD%9C/" class="article-date">
-	  <time datetime="2020-04-07T04:35:32.000Z" itemprop="datePublished">April 7, 2020</time>
+	  <time datetime="2020-04-07T14:35:32.000Z" itemprop="datePublished">April 7, 2020</time>
 	</a>
 
       
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h5 id="进入HBase命令行"><a href="#进入HBase命令行" class="headerlink" title="进入HBase命令行"></a>进入HBase命令行</h5><p>HBase提供了一个shell的终端给用户进行交互，可以与MySQL关联学习</p>
+<a id="more"></a>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">前提启动Hadoop与hbase服务</span></span><br><span class="line"><span class="meta">#</span><span class="bash">进入hbase命令行</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> HBASE_HOME/bin/</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hbase shell</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="HBase中基本操作"><a href="#HBase中基本操作" class="headerlink" title="HBase中基本操作"></a>HBase中基本操作</h5><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>命令表达式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>创建表</td>
+<td>create ‘table_name’,’col_family1’,’col_family2’,,,,,’col_familyN’,</td>
+</tr>
+<tr>
+<td>删除记录</td>
+<td>put  “table_name”,”row_name”,”col_name”,”value”</td>
+</tr>
+<tr>
+<td>查看记录</td>
+<td>get  “table_name”,”col_name”</td>
+</tr>
+<tr>
+<td>查看表中记录总数</td>
+<td>count  “table_name”</td>
+</tr>
+<tr>
+<td>删除记录</td>
+<td>delete “table_name”,”row_name”,”col_name”</td>
+</tr>
+<tr>
+<td>删除一张表</td>
+<td>先要屏蔽该表，才能对该表进行删除，第一步 disable “table_name”  第二部 drop “table_name”</td>
+</tr>
+<tr>
+<td>查看所有记录</td>
+<td>scan “table_name”</td>
+</tr>
+<tr>
+<td>查看某一个表某一列的所有数据</td>
+<td>scan “table_name”,{COLUMNS=&gt; ‘col_family: col_name’}</td>
+</tr>
+<tr>
+<td>更新记录</td>
+<td>重写一遍进行覆盖</td>
+</tr>
+</tbody></table>
+<h5 id="表操作"><a href="#表操作" class="headerlink" title="表操作"></a>表操作</h5><ul>
+<li>创建表：<code>&gt; create &#39;table_name&#39;,&#39;col_family1&#39;,&#39;col_family2&#39;,,,,,&#39;col_familyN&#39;</code></li>
+<li>列出全部表：<code>&gt; list</code></li>
+<li>得到表的描述：<code>&gt; describe &quot;table_name&quot;</code></li>
+<li>删除表：<code>&gt; disable &quot;table_name&quot;;drop &quot;table_name&quot;</code></li>
+<li>判断表是否启用：<code>is enable &quot;table_name&quot;</code></li>
+</ul>
+<h5 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h5><ul>
+<li><p>添加记录：<code>&gt; put</code></p>
+</li>
+<li><p>获取一条记录：</p>
+<ol>
+<li><p>取得一个id的所有数据:</p>
+<figure class="highlight plain"><figcaption><span>"tables","row_key"```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2. 获取一个id（row_key），一个列族的所有数据:</span><br><span class="line"></span><br><span class="line">   &#96;&#96;&#96;get &quot;table_name&quot;,&quot;row_key&quot;,&quot;info&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取一个id，一个列族中列的所有数据：</p>
+<figure class="highlight plain"><figcaption><span>"table_name","row_key","info:col"```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 更新记录</span><br><span class="line"></span><br><span class="line">  &#96;&#96;&#96;shell</span><br><span class="line">  #更新users表中小明的年龄</span><br><span class="line">  &gt; put &quot;users&quot;,&quot;xiaoming&quot;,&quot;info:age&quot;,&quot;29&quot;</span><br><span class="line">  #查看小明的年龄</span><br><span class="line">  &gt; get &quot;users&quot;,&quot;xiaoming&quot;,&quot;info:age&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><p>获取单元格数据的版本数据</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> get <span class="string">"users"</span>,<span class="string">"xiaoming"</span>,&#123;COLUMN=&gt;<span class="string">'info:age'</span>,VERSION=&gt;1&#125;</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> get <span class="string">"users"</span>,<span class="string">"xiaoming"</span>,&#123;COLUMN=&gt;<span class="string">'info:age'</span>,VERSION=&gt;2&#125;</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> get <span class="string">"users"</span>,<span class="string">"xiaoming"</span>,&#123;COLUMN=&gt;<span class="string">'info:age'</span>,VERSION=&gt;3&#125;</span></span><br><span class="line">[out-put] :只有一个版本数据，如果想看见多个版本，需要在配置文件中进行相关配置</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取单元格数据的某个版本数据(timestamp)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> get <span class="string">"users"</span>,<span class="string">"xiaoming"</span>,&#123;COLUMN=&gt;<span class="string">'info:age'</span>,TIMESTAMP=&gt;1442910320009&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>删除操作</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">删除小明的age字段</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> delete <span class="string">"users"</span>,<span class="string">"xiaoming"</span>,<span class="string">"info:age"</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 删除整行，把小明全部删掉</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> deleteall <span class="string">"users"</span>,<span class="string">"xioaming"</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash">统计表的行数</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> count <span class="string">"users"</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash">清空表 **慎用**</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> truncate <span class="string">"users"</span></span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+
       
     </div>
     <footer class="entry-meta entry-footer">
       
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF/">大数据技术</a>
+
       
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HBase/" rel="tag">HBase</a></li></ul>
+
       
             
       
@@ -203,7 +304,7 @@ var themeMenus = {};
     
 <nav id="article-nav">
   
-    <a href="/2020/04/07/BigData/HBase-Java-API/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/04/08/BigData/HBase-Java-API/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
@@ -213,9 +314,9 @@ var themeMenus = {};
     </a>
   
   
-    <a href="/2020/04/07/BigData/HBase%E6%A6%82%E8%BF%B0/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/04/07/LIFE/Life-2020-4-7/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">HBase概述</div>
+      <div class="article-nav-title">Life-2020/4/7-菜单</div>
     </a>
   
 </nav>
@@ -229,7 +330,7 @@ var themeMenus = {};
     <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
     <strong class="toc-title">Contents</strong>
     
-      <ol class="nav">None</ol>
+      <ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#进入HBase命令行"><span class="nav-number">1.</span> <span class="nav-text">进入HBase命令行</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HBase中基本操作"><span class="nav-number">2.</span> <span class="nav-text">HBase中基本操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#表操作"><span class="nav-number">3.</span> <span class="nav-text">表操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据操作"><span class="nav-number">4.</span> <span class="nav-text">数据操作</span></a></li></ol>
     
     </div>
   </aside>
