@@ -164,6 +164,143 @@ var themeMenus = {};
         
           <section id="main">
   
+    <article id="post-BigData/Sqoop-2"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2020/04/04/BigData/Sqoop-2/">Sqoop数据导入与导出</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2020/04/04/BigData/Sqoop-2/" class="article-date">
+	  <time datetime="2020-04-04T08:31:14.000Z" itemprop="datePublished">April 4, 2020</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>把HDFS中数据导到MySQL中</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">xxxxxx:~$ \</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> sqoop <span class="built_in">export</span> \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -connect jdbc:mysql://localhost:3306/mysqoop \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -username root \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -password strongs \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -table hdsftomysql \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -<span class="built_in">export</span>-dir hdfs://localhost:9000/mysqoop/1/mystu/part-m-00000</span></span><br><span class="line">ps:MySQL中必须提前创建表结构</span><br><span class="line">关于其他数据源到处到MySQL中，暂无直接接口，可以依赖HDFS到MySQL的过程</span><br></pre></td></tr></table></figure>
+
+<p>Sqoop job</p>
+<img src="https://s1.ax1x.com/2020/04/05/GBlCK1.png" alt="2 1" border="0">
+
+<p>创建sqoop job</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sqoop job \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -create mysqoopjob1 \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -- import \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -connect jdbc:mysql://localhost:3306/mysqoop \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -username root \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -password strongs \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -table student \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -hbase-create-table \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -hbase-table mystu2 \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -column-famliy mycf \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -hbase-row-key id</span></span><br></pre></td></tr></table></figure>
+
+<p>sqoop job其他操作</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">查看job</span></span><br><span class="line">sqoop job --list</span><br><span class="line"><span class="meta">#</span><span class="bash">执行job</span></span><br><span class="line">sqoop job --exec mysqoopjob1</span><br><span class="line"><span class="meta">#</span><span class="bash">删除job</span></span><br><span class="line">sqoop job --delete mysqoopjob1</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF/">大数据技术</a>
+
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
+    <article id="post-BigData/Sqoop-1"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2020/04/04/BigData/Sqoop-1/">Sqoop介绍及库表操作</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2020/04/04/BigData/Sqoop-1/" class="article-date">
+	  <time datetime="2020-04-04T08:30:59.000Z" itemprop="datePublished">April 4, 2020</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Sqoop解决的问题：数据从关系型数据库到Hadoop生态系统的过程。</p>
+<p>Sqoop官网：<a href="https://sqoop.apache.org" target="_blank" rel="noopener">https://sqoop.apache.org</a></p>
+<p>sqoop支持的命令：</p>
+<img src="https://s1.ax1x.com/2020/04/05/GBlpvR.png" alt="1 1" border="0">
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqoop help</span><br></pre></td></tr></table></figure>
+
+<p>列出数据库:检测环境是否正常</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">xxxx:/apps$ \</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> sqoop list-databases \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -connect jdbc:mysql://localhost:3306 \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -username root \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -password strongs</span></span><br><span class="line"></span><br><span class="line">[output] mysql中数据库</span><br></pre></td></tr></table></figure>
+
+<p>列出表：列出mysqoop数据库中的表</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">xxxx:/apps$ \</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> sqoop list-tables \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -connect jdbc:mysql://localhost:3306/mysqoop \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -username root \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -password strongs</span></span><br><span class="line"></span><br><span class="line">[output] mysqoop数据库中的表</span><br></pre></td></tr></table></figure>
+
+<p>把MySQL中数据导到HDFS中</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">查看Hadoop生态系统中的目录结构</span></span><br><span class="line">hadoop fs -lsr /</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">xxxx:/apps$ \</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> sqoop import \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -connect jdbc:mysql://localhost:3306/mysqoop \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -username root \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -password strongs \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -table student \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -m 1 \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -target-dir /mysqoop/1/mystu</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">查看Hadoop生态系统中的目录</span></span><br><span class="line">hadoop fs -ls /</span><br><span class="line"><span class="meta">#</span><span class="bash">查看Hadoop生态系统中mysqoop的目录结构</span></span><br><span class="line">hadoop fs -lsr /mysqoop</span><br><span class="line"><span class="meta">#</span><span class="bash">查看内容</span></span><br><span class="line">hadoop fs -text /mysqoop/1/mystu/part-m-00000</span><br></pre></td></tr></table></figure>
+
+<p>把MySQL中数据导到HBase中</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">启动hbase</span></span><br><span class="line">cd /apps/hbase/bin</span><br><span class="line">./start-hbase.sh</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">进入hbaseshell模式</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hbase shell</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> list  <span class="comment">#查看表</span></span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">xxxx:/apps$ \</span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> sqoop import \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -connect jdbc:mysql://localhost:3306/mysqoop \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -username root \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -password strongs \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -table student \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -hbase-create-table \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -hbase-table mystu</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -column-family mycf \</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> -hbase-row-key id <span class="comment">#MySQL中student表主键</span></span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">查看hbase变化</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> hbase shell</span></span><br><span class="line"></span><br><span class="line">list #列出表</span><br><span class="line">scan 'mystu' #扫描表</span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF/">大数据技术</a>
+
+      
+      
+            
+      
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+    
+
+  
     <article id="post-BigData/Hadoop——MapReduce学习"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -685,133 +822,6 @@ MapReduce学习——习题1.对MapReduce的体系结构，以下说法正确的
     
 
   
-    <article id="post-Linux/Linuxux常用命令——帮助命令"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2020/03/23/Linux/Linuxux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E2%80%94%E2%80%94%E5%B8%AE%E5%8A%A9%E5%91%BD%E4%BB%A4/">Linuxux常用命令——帮助命令</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2020/03/23/Linux/Linuxux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E2%80%94%E2%80%94%E5%B8%AE%E5%8A%A9%E5%91%BD%E4%BB%A4/" class="article-date">
-	  <time datetime="2020-03-23T05:10:35.000Z" itemprop="datePublished">March 23, 2020</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-
-          
-            <div class="entry-summary" style="margin-left:0;">
-            帮助命令 man（manual）man 命令12#man - format and display the on-line manual pages#man [-acdfFhkKtwW] [--path] [-m system] [-p string] [-c config file] [-M pathlist] [-P pager] [-B bowser] [-H htmlpager] [-S section list] [section] name ...
-
-查看快捷键或方式12输入 &#x2F;-d #找到第一个dn #next 翻页
-
-
-
-man的级别1234567891: 查看命令帮助2: 查看可被内核调用的函数的帮助3: 查看函数和函数库的帮助4: 查看特殊文件的帮助(主要...
-          
-
-        
-          <p class="article-more-link">
-            <a href="/2020/03/23/Linux/Linuxux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E2%80%94%E2%80%94%E5%B8%AE%E5%8A%A9%E5%91%BD%E4%BB%A4/#more">Continue Reading →</a>
-          </p>
-        </div>
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/Linux/">Linux</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux%E5%91%BD%E4%BB%A4/" rel="tag">Linux命令</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
-    <article id="post-databases/mysql-data迁移"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2020/03/19/databases/mysql-data%E8%BF%81%E7%A7%BB/">Windows 10下进行MySQL数据文件的转移</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	Posted on <a href="/2020/03/19/databases/mysql-data%E8%BF%81%E7%A7%BB/" class="article-date">
-	  <time datetime="2020-03-19T02:09:04.922Z" itemprop="datePublished">March 19, 2020</time>
-	</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-
-          
-            <div class="entry-summary" style="margin-left:0;">
-            ​        在进行数据分析的过程中，“基石”便是数据，可在使用过程中，存储在某个盘中的数据会不断累积，特别是MySQL的默认安装路径为C盘(C:\Program Files\MySQL\MySQL Server 8.0)，将会导致C盘内存越用越小。同时个人因为各种需求也需要进行数据文件的转移。
-转移文件12345**  windows下数据文件为隐藏文件 基本都在 C:\ProgramData 该路径下 **Step1:找到 C:\ProgramData\MySQL\MySQL Server 8.0 下的 Data 文件Setp2: 复制Data文件到 转移目标路径下		F:\Data\MySQL Server 8.0\ --&gt; F:\Data\MySQL Server 8...
-          
-
-        
-          <p class="article-more-link">
-            <a href="/2020/03/19/databases/mysql-data%E8%BF%81%E7%A7%BB/#more">Continue Reading →</a>
-          </p>
-        </div>
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL-Server/" rel="tag">MySQL Server</a></li></ul>
-
-      
-            
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-    
-
-  
 
 
   <nav id="page-nav">
@@ -942,6 +952,30 @@ man的级别1234567891: 查看命令帮助2: 查看可被内核调用的函数�
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2020/04/12/BigData/Kafka%E5%88%86%E5%B8%83%E5%BC%8F%E7%9A%84%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">Kafka分布式的消息队列</a></h6>
+              <span>April 12, 2020</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2020/04/10/DEEP-LEARNING/%E5%9B%9E%E5%BD%92%E9%97%AE%E9%A2%98%E5%8F%8A%E6%AD%A3%E5%88%99%E5%8C%96/">回归问题及正则化</a></h6>
+              <span>April 10, 2020</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2020/04/09/LIFE/%E9%9A%8F%E6%84%8F%E6%89%BE%E4%BA%86%E5%87%A0%E5%BC%A0%E5%B0%8F%E7%8B%97U%E2%80%A2%E3%82%A7%E2%80%A2-U%E7%9A%84%E7%85%A7%E7%89%87/">随意找了几张小狗U•ェ•*U的照片——可换做头像哟</a></h6>
               <span>April 9, 2020</span>
             </div>
@@ -984,30 +1018,6 @@ man的级别1234567891: 查看命令帮助2: 查看可被内核调用的函数�
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/04/07/DEEP-LEARNING/%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B%E2%80%94%E2%80%94%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4%E6%A8%A1%E5%9E%8B%E5%8F%8A%E6%96%87%E6%9C%AC%E7%9B%B8%E4%BC%BC%E5%BA%A6%E8%AE%A1%E7%AE%97/">特征工程——向量空间模型及文本相似度计算</a></h6>
-              <span>April 7, 2020</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2020/04/07/BigData/HBase%E6%A6%82%E8%BF%B0/">HBase概述</a></h6>
-              <span>April 7, 2020</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1017,7 +1027,7 @@ man的级别1234567891: 查看命令帮助2: 查看可被内核调用的函数�
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/BOOKS/">BOOKS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Daily-Sentence/">Daily Sentence</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Deep-Learning/">Deep Learning</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Life/">Life</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP-%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/">NLP(自然语言处理)</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF/">大数据技术</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/BOOKS/">BOOKS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Daily-Sentence/">Daily Sentence</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Deep-Learning/">Deep Learning</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Life/">Life</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP-%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/">NLP(自然语言处理)</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF/">大数据技术</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -1027,7 +1037,7 @@ man的级别1234567891: 查看命令帮助2: 查看可被内核调用的函数�
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Daily-Sentence/" rel="tag">Daily Sentence</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HBase/" rel="tag">HBase</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop/" rel="tag">Hadoop</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux%E5%91%BD%E4%BB%A4/" rel="tag">Linux命令</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyBooks/" rel="tag">MyBooks</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL-Server/" rel="tag">MySQL Server</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP-%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/" rel="tag">NLP(自然语言处理)</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%8A%E6%97%A5%E8%8F%9C%E5%8D%95/" rel="tag">今日菜单</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%96%9C%E7%88%B1%E7%9A%84%E5%9B%BE%E7%89%87/" rel="tag">喜爱的图片</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Daily-Sentence/" rel="tag">Daily Sentence</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HBase/" rel="tag">HBase</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop/" rel="tag">Hadoop</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kafka/" rel="tag">Kafka</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux%E5%91%BD%E4%BB%A4/" rel="tag">Linux命令</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyBooks/" rel="tag">MyBooks</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL-Server/" rel="tag">MySQL Server</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP-%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/" rel="tag">NLP(自然语言处理)</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%8A%E6%97%A5%E8%8F%9C%E5%8D%95/" rel="tag">今日菜单</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%96%9C%E7%88%B1%E7%9A%84%E5%9B%BE%E7%89%87/" rel="tag">喜爱的图片</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -1037,7 +1047,7 @@ man的级别1234567891: 查看命令帮助2: 查看可被内核调用的函数�
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Daily-Sentence/" style="font-size: 13.33px;">Daily Sentence</a> <a href="/tags/Deep-Learning/" style="font-size: 13.33px;">Deep Learning</a> <a href="/tags/HBase/" style="font-size: 16.67px;">HBase</a> <a href="/tags/Hadoop/" style="font-size: 13.33px;">Hadoop</a> <a href="/tags/Linux%E5%91%BD%E4%BB%A4/" style="font-size: 20px;">Linux命令</a> <a href="/tags/MyBooks/" style="font-size: 10px;">MyBooks</a> <a href="/tags/MySQL-Server/" style="font-size: 10px;">MySQL Server</a> <a href="/tags/NLP-%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/" style="font-size: 13.33px;">NLP(自然语言处理)</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/%E4%BB%8A%E6%97%A5%E8%8F%9C%E5%8D%95/" style="font-size: 10px;">今日菜单</a> <a href="/tags/%E5%96%9C%E7%88%B1%E7%9A%84%E5%9B%BE%E7%89%87/" style="font-size: 10px;">喜爱的图片</a>
+      <a href="/tags/Daily-Sentence/" style="font-size: 13.33px;">Daily Sentence</a> <a href="/tags/Deep-Learning/" style="font-size: 16.67px;">Deep Learning</a> <a href="/tags/HBase/" style="font-size: 16.67px;">HBase</a> <a href="/tags/Hadoop/" style="font-size: 13.33px;">Hadoop</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Linux%E5%91%BD%E4%BB%A4/" style="font-size: 20px;">Linux命令</a> <a href="/tags/MyBooks/" style="font-size: 10px;">MyBooks</a> <a href="/tags/MySQL-Server/" style="font-size: 10px;">MySQL Server</a> <a href="/tags/NLP-%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/" style="font-size: 13.33px;">NLP(自然语言处理)</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/%E4%BB%8A%E6%97%A5%E8%8F%9C%E5%8D%95/" style="font-size: 10px;">今日菜单</a> <a href="/tags/%E5%96%9C%E7%88%B1%E7%9A%84%E5%9B%BE%E7%89%87/" style="font-size: 10px;">喜爱的图片</a>
     </div>
   </div>
 
@@ -1047,7 +1057,7 @@ man的级别1234567891: 查看命令帮助2: 查看可被内核调用的函数�
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a><span class="archive-list-count">17</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a><span class="archive-list-count">17</span></li></ul>
     </div>
   </div>
 
