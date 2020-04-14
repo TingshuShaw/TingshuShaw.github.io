@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- PACE Progress Bar START -->
+  
+    
+<script src="https://raw.githubusercontent.com/HubSpot/pace/v1.0.2/pace.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://github.com/HubSpot/pace/raw/master/themes/orange/pace-theme-flash.css">
+
+  
+  
+
+  <!-- PACE Progress Bar START -->
+
+  
+  <title>spark基础学习 | Shaw</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Spark" />
+  
+  
+  
+  
+  <meta name="description" content="Spark简介什么是spark：基于内存的计算的大数据并行计算框架 spark 特点 速度比Hadoop快 通用性强 Transformations，Actions 容错性 Checkpoint, Lineage 内存中进行操作，适合对此迭代，不适合异步细粒度更新状态的应用，对于增量修改的应用模型不适用。数据量不是特点大，但是要求实时统计分析需求  spark生态系统组件简介spark生态图 BD">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spark基础学习">
+<meta property="og:url" content="http://yoursite.com/2020/04/13/BigData/Spark%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Shaw">
+<meta property="og:description" content="Spark简介什么是spark：基于内存的计算的大数据并行计算框架 spark 特点 速度比Hadoop快 通用性强 Transformations，Actions 容错性 Checkpoint, Lineage 内存中进行操作，适合对此迭代，不适合异步细粒度更新状态的应用，对于增量修改的应用模型不适用。数据量不是特点大，但是要求实时统计分析需求  spark生态系统组件简介spark生态图 BD">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-13T12:59:09.000Z">
+<meta property="article:modified_time" content="2020-04-14T06:35:57.224Z">
+<meta property="article:tag" content="Spark">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Shaw" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" >
+  <link rel="stylesheet" href="/css/hiero.css" >
+  <link rel="stylesheet" href="/css/glyphs.css" >
+  
+
+  <!-- Custom CSS -->
+  
+<link rel="stylesheet" href="/css/my.css">
+
+  <!-- Google Adsense -->
+  
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<script>
+var themeMenus = {};
+
+  themeMenus["/"] = "Home"; 
+
+  themeMenus["/archives"] = "Archives"; 
+
+  themeMenus["/categories"] = "Categories"; 
+
+  themeMenus["/tags"] = "Tags"; 
+
+  themeMenus["/about"] = "About"; 
+
+</script>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  <header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" rel="home" >
+                <img style="margin-bottom: 10px;"  width="124px" height="124px" alt="Hike News" src="http://h.hiphotos.baidu.com/zhidao/wh%3D450%2C600/sign=0b995d383f292df59796a41189017056/d8f9d72a6059252d4b5d8513319b033b5bb5b95b.jpg">
+              </a>
+            
+          </h1>
+
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+            <div class="clearfix sf-menu">
+
+              <ul id="main-nav" class="nmenu sf-js-enabled">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/tags">Tags</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class="" href="/about">About</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="originBgDiv" style="background: #fff; width: 100%;">
+
+      <div style="max-height:600px; overflow: hidden;  display: flex; display: -webkit-flex; align-items: center;">
+        <img id="originBg" width="100%" alt="" src="">
+      </div>
+
+  </div>
+
+  <script>
+  function setAboutIMG(){
+      var imgUrls = "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=128299422,1502359480&fm=26&gp=0.jpg".split(",");
+      var random = Math.floor((Math.random() * imgUrls.length ));
+      if (imgUrls[random].startsWith('http') || imgUrls[random].indexOf('://') >= 0) {
+        document.getElementById("originBg").src=imgUrls[random];
+      } else {
+        document.getElementById("originBg").src='/' + imgUrls[random];
+      }
+  }
+  bgDiv=document.getElementById("originBgDiv");
+  if(location.pathname.match('about')){
+    setAboutIMG();
+    bgDiv.style.display='block';
+  }else{
+    bgDiv.style.display='none';
+  }
+  </script>
+
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-BigData/Spark基础学习" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Spark基础学习
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	Posted on <a href="/2020/04/13/BigData/Spark%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/" class="article-date">
+	  <time datetime="2020-04-13T12:59:09.000Z" itemprop="datePublished">April 13, 2020</time>
+	</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="Spark简介"><a href="#Spark简介" class="headerlink" title="Spark简介"></a>Spark简介</h5><h6 id="什么是spark："><a href="#什么是spark：" class="headerlink" title="什么是spark："></a>什么是spark：</h6><p>基于内存的计算的大数据并行计算框架</p>
+<h6 id="spark-特点"><a href="#spark-特点" class="headerlink" title="spark 特点"></a>spark 特点</h6><ul>
+<li>速度比Hadoop快</li>
+<li>通用性强 Transformations，Actions</li>
+<li>容错性 Checkpoint, Lineage</li>
+<li>内存中进行操作，适合对此迭代，不适合异步细粒度更新状态的应用，对于增量修改的应用模型不适用。数据量不是特点大，但是要求实时统计分析需求</li>
+</ul>
+<h6 id="spark生态系统组件简介"><a href="#spark生态系统组件简介" class="headerlink" title="spark生态系统组件简介"></a>spark生态系统组件简介</h6><p>spark生态图</p>
+<p>BDAS数据分析站</p>
+<table>
+<thead>
+<tr>
+<th>构件</th>
+<th>介绍</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Spark Core</td>
+<td>有向无环图（DAG）的分布是并行计算框架<br>引入了RDD（Resilient Distributed Dataset）<br>移动计算而非移动数据<br>使用多线程池模型来减少task启动开销<br>akka作为通讯框架</td>
+</tr>
+<tr>
+<td>Spark Streaming</td>
+<td>实时数据流及逆行高通量、容错处理的流式处理系统，可以对多种数据源进行类似Map、reduce和join等复杂操作，并将结果保存到外部文件系统中</td>
+</tr>
+<tr>
+<td>Spark SQL</td>
+<td>允许开发人员直接处理RDD，同时可以查询，同时更复杂的数据分析</td>
+</tr>
+<tr>
+<td>MLBase/MLlib</td>
+<td>专注于机器学习</td>
+</tr>
+<tr>
+<td>GraphX</td>
+<td>用于图和图之间的并行计算</td>
+</tr>
+<tr>
+<td>Tachyon</td>
+<td>高容错的分布式文件系统，允许文件以内存的速度在集群框架中进行可靠的共享</td>
+</tr>
+<tr>
+<td>Mesos</td>
+<td>一个集群管理七，提供了有效的、跨分布应用或框架的资源隔离和共享</td>
+</tr>
+<tr>
+<td>BlinkDB</td>
+<td>海量数据上运行交互式SQL查询的大国莫并行查询引擎</td>
+</tr>
+</tbody></table>
+<p>Spark 运行模式</p>
+<h5 id="Spark-Local模式安装"><a href="#Spark-Local模式安装" class="headerlink" title="Spark Local模式安装"></a>Spark Local模式安装</h5><h5 id="spark-standalone模式安装"><a href="#spark-standalone模式安装" class="headerlink" title="spark standalone模式安装"></a>spark standalone模式安装</h5><h5 id="spark编程模式"><a href="#spark编程模式" class="headerlink" title="spark编程模式"></a>spark编程模式</h5><h5 id="spark-shell"><a href="#spark-shell" class="headerlink" title="spark shell"></a>spark shell</h5>
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF/">大数据技术</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spark/" rel="tag">Spark</a></li></ul>
+
+      
+            
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/04/12/BigData/Kafka%E5%88%86%E5%B8%83%E5%BC%8F%E7%9A%84%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Kafka分布式的消息队列</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#Spark简介"><span class="nav-number">1.</span> <span class="nav-text">Spark简介</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#什么是spark："><span class="nav-number">1.1.</span> <span class="nav-text">什么是spark：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#spark-特点"><span class="nav-number">1.2.</span> <span class="nav-text">spark 特点</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#spark生态系统组件简介"><span class="nav-number">1.3.</span> <span class="nav-text">spark生态系统组件简介</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Spark-Local模式安装"><span class="nav-number">2.</span> <span class="nav-text">Spark Local模式安装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spark-standalone模式安装"><span class="nav-number">3.</span> <span class="nav-text">spark standalone模式安装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spark编程模式"><span class="nav-number">4.</span> <span class="nav-text">spark编程模式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spark-shell"><span class="nav-number">5.</span> <span class="nav-text">spark shell</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2020 Shaw All Rights Reserved.
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hiero" target="_blank">hiero</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var contentdiv = document.getElementById("content");
+
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+</script>
+
+<!-- Custome JS -->
+
+<script src="/js/my.js"></script>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/scripts.js"></script>
+
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
