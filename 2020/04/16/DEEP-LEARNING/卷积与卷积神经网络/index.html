@@ -17,25 +17,26 @@
   <!-- PACE Progress Bar START -->
 
   
-  <title>spark基础学习 | Shaw</title>
+  <title>卷积与卷积神经网络 | Shaw</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="keywords" content="Spark" />
+  <meta name="keywords" content="Deep Learning" />
   
   
   
   
-  <meta name="description" content="Spark简介什么是spark：基于内存的计算的大数据并行计算框架 spark 特点 速度比Hadoop快 通用性强 Transformations，Actions 容错性 Checkpoint, Lineage 内存中进行操作，适合对此迭代，不适合异步细粒度更新状态的应用，对于增量修改的应用模型不适用。数据量不是特点大，但是要求实时统计分析需求  spark生态系统组件简介spark生态图 BD">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Spark基础学习">
-<meta property="og:url" content="http://yoursite.com/2020/04/13/BigData/Spark%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/index.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="卷积与卷积神经网络">
+<meta property="og:url" content="http://yoursite.com/2020/04/16/DEEP-LEARNING/%E5%8D%B7%E7%A7%AF%E4%B8%8E%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/index.html">
 <meta property="og:site_name" content="Shaw">
-<meta property="og:description" content="Spark简介什么是spark：基于内存的计算的大数据并行计算框架 spark 特点 速度比Hadoop快 通用性强 Transformations，Actions 容错性 Checkpoint, Lineage 内存中进行操作，适合对此迭代，不适合异步细粒度更新状态的应用，对于增量修改的应用模型不适用。数据量不是特点大，但是要求实时统计分析需求  spark生态系统组件简介spark生态图 BD">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-04-13T12:59:09.000Z">
-<meta property="article:modified_time" content="2020-04-14T06:35:57.224Z">
-<meta property="article:tag" content="Spark">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/16/JFojIK.md.jpg">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/16/JFoxPO.md.jpg">
+<meta property="article:published_time" content="2020-04-16T04:00:30.000Z">
+<meta property="article:modified_time" content="2020-04-16T04:05:32.773Z">
+<meta property="article:tag" content="Deep Learning">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/04/16/JFojIK.md.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Shaw" type="application/atom+xml">
   
@@ -169,7 +170,7 @@ var themeMenus = {};
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-BigData/Spark基础学习" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-DEEP-LEARNING/卷积与卷积神经网络" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -177,7 +178,7 @@ var themeMenus = {};
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      Spark基础学习
+      卷积与卷积神经网络
     </h1>
   
 
@@ -185,75 +186,27 @@ var themeMenus = {};
     
     <div class="article-meta">
       
-	Posted on <a href="/2020/04/13/BigData/Spark%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/" class="article-date">
-	  <time datetime="2020-04-13T12:59:09.000Z" itemprop="datePublished">April 13, 2020</time>
+	Posted on <a href="/2020/04/16/DEEP-LEARNING/%E5%8D%B7%E7%A7%AF%E4%B8%8E%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" class="article-date">
+	  <time datetime="2020-04-16T04:00:30.000Z" itemprop="datePublished">April 16, 2020</time>
 	</a>
 
       
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="Spark简介"><a href="#Spark简介" class="headerlink" title="Spark简介"></a>Spark简介</h5><h6 id="什么是spark："><a href="#什么是spark：" class="headerlink" title="什么是spark："></a>什么是spark：</h6><p>基于内存的计算的大数据并行计算框架</p>
-<h6 id="spark-特点"><a href="#spark-特点" class="headerlink" title="spark 特点"></a>spark 特点</h6><ul>
-<li>速度比Hadoop快</li>
-<li>通用性强 Transformations，Actions</li>
-<li>容错性 Checkpoint, Lineage</li>
-<li>内存中进行操作，适合对此迭代，不适合异步细粒度更新状态的应用，对于增量修改的应用模型不适用。数据量不是特点大，但是要求实时统计分析需求</li>
-</ul>
-<h6 id="spark生态系统组件简介"><a href="#spark生态系统组件简介" class="headerlink" title="spark生态系统组件简介"></a>spark生态系统组件简介</h6><p>spark生态图</p>
-<p>BDAS数据分析站</p>
-<table>
-<thead>
-<tr>
-<th>构件</th>
-<th>介绍</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Spark Core</td>
-<td>有向无环图（DAG）的分布是并行计算框架<br>引入了RDD（Resilient Distributed Dataset）<br>移动计算而非移动数据<br>使用多线程池模型来减少task启动开销<br>akka作为通讯框架</td>
-</tr>
-<tr>
-<td>Spark Streaming</td>
-<td>实时数据流及逆行高通量、容错处理的流式处理系统，可以对多种数据源进行类似Map、reduce和join等复杂操作，并将结果保存到外部文件系统中</td>
-</tr>
-<tr>
-<td>Spark SQL</td>
-<td>允许开发人员直接处理RDD，同时可以查询，同时更复杂的数据分析</td>
-</tr>
-<tr>
-<td>MLBase/MLlib</td>
-<td>专注于机器学习</td>
-</tr>
-<tr>
-<td>GraphX</td>
-<td>用于图和图之间的并行计算</td>
-</tr>
-<tr>
-<td>Tachyon</td>
-<td>高容错的分布式文件系统，允许文件以内存的速度在集群框架中进行可靠的共享</td>
-</tr>
-<tr>
-<td>Mesos</td>
-<td>一个集群管理七，提供了有效的、跨分布应用或框架的资源隔离和共享</td>
-</tr>
-<tr>
-<td>BlinkDB</td>
-<td>海量数据上运行交互式SQL查询的大国莫并行查询引擎</td>
-</tr>
-</tbody></table>
-<p>Spark 运行模式</p>
-<h5 id="Spark-Local模式安装"><a href="#Spark-Local模式安装" class="headerlink" title="Spark Local模式安装"></a>Spark Local模式安装</h5><h5 id="spark-standalone模式安装"><a href="#spark-standalone模式安装" class="headerlink" title="spark standalone模式安装"></a>spark standalone模式安装</h5><h5 id="spark编程模式"><a href="#spark编程模式" class="headerlink" title="spark编程模式"></a>spark编程模式</h5><h5 id="spark-shell"><a href="#spark-shell" class="headerlink" title="spark shell"></a>spark shell</h5>
+        <p><a href="https://imgchr.com/i/JFojIK" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/04/16/JFojIK.md.jpg" alt="图一" border="0"></a></p>
+<p><a href="https://imgchr.com/i/JFoxPO" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/04/16/JFoxPO.md.jpg" alt="图二" border="0"></a></p>
+
       
     </div>
     <footer class="entry-meta entry-footer">
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF/">大数据技术</a>
+    <a class="article-category-link" href="/categories/Deep-Learning/">Deep Learning</a>
 
       
   <span class="ico-tags"></span>
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spark/" rel="tag">Spark</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li></ul>
 
       
             
@@ -264,19 +217,10 @@ var themeMenus = {};
     
 <nav id="article-nav">
   
-    <a href="/2020/04/16/DEEP-LEARNING/%E5%8D%B7%E7%A7%AF%E4%B8%8E%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          卷积与卷积神经网络
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/04/12/BigData/Kafka%E5%88%86%E5%B8%83%E5%BC%8F%E7%9A%84%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/04/13/BigData/Spark%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Kafka分布式的消息队列</div>
+      <div class="article-nav-title">Spark基础学习</div>
     </a>
   
 </nav>
@@ -290,7 +234,7 @@ var themeMenus = {};
     <div id="toc" class="toc-article" style="overflow-y: scroll; max-width: 28%;">
     <strong class="toc-title">Contents</strong>
     
-      <ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#Spark简介"><span class="nav-number">1.</span> <span class="nav-text">Spark简介</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#什么是spark："><span class="nav-number">1.1.</span> <span class="nav-text">什么是spark：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#spark-特点"><span class="nav-number">1.2.</span> <span class="nav-text">spark 特点</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#spark生态系统组件简介"><span class="nav-number">1.3.</span> <span class="nav-text">spark生态系统组件简介</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Spark-Local模式安装"><span class="nav-number">2.</span> <span class="nav-text">Spark Local模式安装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spark-standalone模式安装"><span class="nav-number">3.</span> <span class="nav-text">spark standalone模式安装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spark编程模式"><span class="nav-number">4.</span> <span class="nav-text">spark编程模式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spark-shell"><span class="nav-number">5.</span> <span class="nav-text">spark shell</span></a></li></ol>
+      <ol class="nav">None</ol>
     
     </div>
   </aside>
